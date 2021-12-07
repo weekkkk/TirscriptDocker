@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+    <defs>
+        <clipPath id="clip-path">
+            <path class="cls-1" d="M0 0h24v24H0z"/>
+        </clipPath>
+        <style>
+            .cls-1{fill:none}
+        </style>
+    </defs>
+    <g id="Icon_Arrow" data-name="Icon Arrow" style="clip-path:url(#clip-path)">
+        <path id="Space" class="cls-1" d="M0 0h24v24H0z"/>
+        <path id="Icon" d="m12 4-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" style="fill:#fff"/>
+    </g>
+</svg>

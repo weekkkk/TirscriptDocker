@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="106.38" height="106.38">
+    <defs>
+        <linearGradient id="a" y1="1" x2="1.212" y2="-.046" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#ffeb00"/>
+            <stop offset="1" stop-color="#fa0"/>
+        </linearGradient>
+    </defs>
+    <path d="M32 0h12a4 4 0 0 1 4 4v12a32 32 0 0 1-32 32H4a4 4 0 0 1-4-4V32A32 32 0 0 1 32 0z" transform="translate(29.19 29.19)" style="opacity:.75;fill:url(#a)"/>
+</svg>

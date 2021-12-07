@@ -1,0 +1,57 @@
+{
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "target": "es5",
+    "module": "commonjs",
+    "strict": false,
+    "jsx": "preserve",
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "types": ["webpack-env"],
+    "paths": {
+      "@/*": ["src/*"],
+      "@pages/*": ["./src/components/pages/*"],
+      "@plugins/*": ["./src/components/plugins/*"],
+      "@layouts/*": ["./src/components/layouts/*"],
+      "@partials/*": ["./src/components/partials/*"],
+      "@components/*": ["./src/components/*"],
+      "@api/*": ["./src/api/dataSource/api/*"],
+      "@assets/*": ["./src/assets/*"],
+      // "@": path.resolve(__dirname, "./src"),
+      // "@pages": path.resolve(__dirname, "./src/components/pages"),
+      // "@plugins": path.resolve(__dirname, "./src/components/plugins"),
+      // "@layouts": path.resolve(__dirname, "./src/components/layouts"),
+      // "@partials": path.resolve(__dirname, "./src/components/partials"),
+      // "@controls": path.resolve(__dirname, "./src/components/controls"),
+      // "@components": path.resolve(__dirname, "./src/components"),
+      // "@api": path.resolve(__dirname, "./src/api/dataSource/api"),
+      // "@assets": path.resolve(__dirname, "./dist/assets"),
+      // "@dataStore": path.resolve(__dirname, "./src/components/plugins/dataStore"),
+    },
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+
+
+    // "module": "commonjs",// модуль генерации кода: "None", "CommonJS", "AMD", "System", "UMD", "ES6", "ES2015"или "ESNext"
+    //   "target": "es5",    //целевая версию ECMAScript  
+    //   "moduleResolution": "node",//тип импорта модулей (логика работы import from и required) http://www.typescriptlang.org/docs/handbook/module-resolution.html
+    //   //"esModuleInterop": true,
+    //   "lib": [//Список файлов библиотеки для включения в компиляцию.
+    //     "es2017", "dom"
+    // ],
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "tests/**/*.ts",
+    "tests/**/*.tsx",
+    "**/*.ts"
+  ],
+  "exclude": ["node_modules"]
+}
