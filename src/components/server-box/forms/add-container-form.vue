@@ -2,11 +2,11 @@
 <div class="form">
   <div class="title">Добавление контейнера</div>
   <my-select
-  @add-conteiner="addConteiner" 
+  @add-container="addContainer" 
   />
   <div class="buttons">
     <cancel-button class="cancel" @click.native="$emit('hide-dialog')">Отмена</cancel-button>
-    <add-button class="save" @click.native="$emit('add-conteiner', addedConteiner)">Сохранить</add-button>
+    <add-button class="save" @click.native="$emit('add-container', addedContainer)">Сохранить</add-button>
   </div>
 </div>
 </template>
@@ -14,7 +14,7 @@
 <script lang="ts">
 import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
-import RowType from "@/components/table/models/row-type"
+import ImageType from "@/components/table/models/image-type"
 import cancelButton from "@/components/ui/cancel-button.vue"
 import addButton from "@/components/ui/add-button.vue"
 import MySelect from "@/components/ui/my-select/my-select.vue"
@@ -24,10 +24,10 @@ import MySelect from "@/components/ui/my-select/my-select.vue"
   name: "add-image-from",
 })
 export default class AddImageForm extends Vue {
-  @Prop(Array) readonly сonteiners: RowType[];
-  addedConteiner:RowType;
-  addConteiner(addedConteiner: RowType) {
-    this.addedConteiner = addedConteiner;
+  // @Prop(Array) readonly сontainers: ImageType[];
+  addedContainer: ImageType;
+  addContainer(addedContainer: ImageType) {
+    this.addedContainer = addedContainer;
   }
   constructor() {
     super();

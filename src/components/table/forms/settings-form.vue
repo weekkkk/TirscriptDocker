@@ -9,7 +9,7 @@
   <input type="text" placeholder="Введите" class="input">
   <div class="buttons">
     <cancel-button @click.native="$emit('hide-dialog')">Отмена</cancel-button>
-    <add-button class="save" @click.native="$emit('show-add-reposytory-form')">Сохранить</add-button>
+    <add-button class="save" @click.native="$emit('show-add-repository-form')">Сохранить</add-button>
   </div>
 </div>
 
@@ -18,7 +18,6 @@
 <script lang="ts">
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
-import RowType from "@/components/table/models/row-type"
 import cancelButton from "@/components/ui/cancel-button.vue"
 import addButton from "@/components/ui/add-button.vue"
 
@@ -26,7 +25,7 @@ import addButton from "@/components/ui/add-button.vue"
   components: { cancelButton, addButton },
   name: "settings-form",
 })
-export default class SettingsFrom extends Vue {
+export default class SettingsForm extends Vue {
   constructor() {
     super();
   }

@@ -8,12 +8,12 @@
       v-for="server in serverBox.servers"
       :key="server.id"
       :server="server"
-      @show-dialog-add-conteiner="showAddConteinerFormStart"
-      @remove-conteiner="removeConteiner"
+      @show-dialog-add-container="showAddContainerFormStart"
+      @remove-container="removeContainer"
       />
       <my-dialog 
       :showOne="dialogAddServerForm.show" 
-      :showTwo="dialogAddConteinerForm.show"
+      :showTwo="dialogAddContainerForm.show"
       @hide-dialog="hideDialogs()"
       >
         <add-server-form 
@@ -21,10 +21,10 @@
         @add-server="addServer"
         v-if="dialogAddServerForm.show"
         />
-        <add-conteiner-form 
-        @hide-dialog="dialogAddConteinerForm.hideDialog()"
-        @add-conteiner="addConteiner"
-        v-if="dialogAddConteinerForm.show"
+        <add-container-form 
+        @hide-dialog="dialogAddContainerForm.hideDialog()"
+        @add-container="addContainer"
+        v-if="dialogAddContainerForm.show"
         />
       </my-dialog>
     </div>
@@ -39,49 +39,44 @@ import ServerBoxBL from "@/components/server-box/models/server-box-bl"
 import ServerBox from "@/components/server-box/server-box.vue";
 import MyDialog from "@/components/ui/ui-dialog/my-dialog.vue";
 import AddServerForm from "@/components/server-box/forms/add-server-form.vue";
-import RowType from "../table/models/row-type";
 
 @Component({
   components: { ServerBox, MyDialog, AddServerForm },
   name: "servers",
 })
 export default class ServersComponent extends Vue {
-  // сonteiners: RowType[] = [];
   serverBox = new ServerBoxBL([], []);
   pageName = "Страница серверов"
   dialogAddServerForm = new DialogBL(false);
-  dialogAddConteinerForm = new DialogBL(false);
+  dialogAddContainerForm = new DialogBL(false);
   editServerId: number;
   hideDialogs() {
     this.dialogAddServerForm.hideDialog();
-    this.dialogAddConteinerForm.hideDialog();
+    this.dialogAddContainerForm.hideDialog();
   }
   constructor() {
     super();
   }
-  showAddConteinerFormStart(serverId) {
+  showAddContainerFormStart(serverId) {
     this.editServerId = serverId;
-    this.dialogAddConteinerForm.showDialog();
+    this.dialogAddContainerForm.showDialog();
   }
   addServer(server) {
     this.serverBox.addServer(server);
     this.dialogAddServerForm.hideDialog();
   }
-  addConteiner(conteiner) {
-    this.serverBox.addConteiner(conteiner, this.editServerId);
-    this.dialogAddConteinerForm.hideDialog();
+  addContainer(container) {
+    this.serverBox.addContainer(container, this.editServerId);
+    this.dialogAddContainerForm.hideDialog();
   }
-  removeConteiner(obj) {
+  removeContainer(obj) {
     console.log(obj);
-    this.serverBox.removeConteiner(obj.conteinerId, obj.serverId);
+    this.serverBox.removeContainer(obj.containerId, obj.serverId);
   }
   
   created() {
     console.log("servers");
     this.serverBox = this.$mainStore.serverBox
-    // this.сonteiners = this.$mainStore.table.rows;
-    // console.log(this.сonteiners);
-    
   }
   mounted() {}
 }

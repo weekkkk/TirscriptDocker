@@ -1,5 +1,5 @@
 import _Vue from "vue";
-import TableBl from "@/components/table/models/table-bl";
+import TableBl from "@/components/table/models/image-table-bl";
 import ServerBoxBL from "@/components/server-box/models/server-box-bl";
 
 export default {

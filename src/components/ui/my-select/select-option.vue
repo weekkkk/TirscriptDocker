@@ -1,29 +1,29 @@
 <template>
 <div 
 class="option"
-@click="$emit('add-conteiner', conteiner)"
+@click="$emit('add-container', container)"
 >
-  {{conteiner.name}}
+  {{container.name}}
 </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
-import RowType from "@/components/table/models/row-type"
+import ImageType from "@/components/table/models/image-type"
 
 @Component({
   components: { },
   name: "select-option",
 })
 export default class SelectOption extends Vue {
-  @Prop(Object) readonly conteiner: RowType;
+  @Prop(Object) readonly container: ImageType;
   
   created() {
     console.log("servers");
   }
   mounted() {
-    console.log(this.conteiner);
+    console.log(this.container);
   }
 }
 </script>

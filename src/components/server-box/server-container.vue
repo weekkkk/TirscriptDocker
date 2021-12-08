@@ -9,7 +9,7 @@
     </div>
     <div class="container-title-box">
       <div class="container-name">
-        {{conteiner.name}}
+        {{container.name}}
       </div>
       <div class="repository-name">
         123456789
@@ -24,28 +24,28 @@
       </div>
       <div 
       class="icon"
-      @click="$emit('remove-conteiner', conteiner.id)"
+      @click="$emit('remove-container', container.id)"
       >
         <img src="@/assets/icons/ui-components/remove.svg">
       </div>
     </div>
   </div>
-  <server-conteiner-content :contentVisible="contentVisible" />
+  <server-container-content :contentVisible="contentVisible" />
 </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
-import ServerConteinerContent from "@/components/server-box/server-conteiner-content.vue"
-import RowType from "@/components/table/models/row-type"
+import ServerContainerContent from "@/components/server-box/server-container-content.vue"
+import ImageType from "@/components/table/models/image-type"
 
 @Component({
-  components: { ServerConteinerContent },
-  name: "server-conteiner",
+  components: { ServerContainerContent },
+  name: "server-container",
 })
-export default class ServerConteiner extends Vue {
-  @Prop(Object) readonly conteiner: RowType;
+export default class ServerContainer extends Vue {
+  @Prop(Object) readonly container: ImageType;
   
   contentVisible = false;
   constructor() {
@@ -134,6 +134,7 @@ export default class ServerConteiner extends Vue {
         }
         .repository-name {
           font-size: 12px;
+          margin: 0;
         }
       }
       .icon {

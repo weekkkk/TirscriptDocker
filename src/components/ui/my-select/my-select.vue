@@ -1,53 +1,48 @@
 <template>
-<div 
-class="select"
-@click="optionsVisible = true"
->
-  <div class="select-input">
-    <img src="@/assets/icons/ui-components/select-arrow.svg" class="arrow">
-    <input 
-    type="text" 
-    class="input" 
-    v-model="soughtConteinerName"
-    >
+  <div class="select" @click="optionsVisible = true">
+    <div class="select-input">
+      <img src="@/assets/icons/ui-components/select-arrow.svg" class="arrow" />
+      <input type="text" class="input" v-model="soughtContainerName" />
+    </div>
+    <div class="optionsBox" v-if="optionsVisible">
+      <select-option
+        v-for="container in serchContainers"
+        :key="container.id"
+        :container="container"
+        @add-container="addContainer"
+      />
+    </div>
   </div>
-  <div class="optionsBox" v-if="optionsVisible">
-    <select-option 
-    v-for="conteiner in serchConteiners" 
-    :key="conteiner.id" 
-    :conteiner="conteiner" 
-    @add-conteiner="addConteiner"
-    />
-  </div>
-</div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
-import RowType from "@/components/table/models/row-type"
-import SelectOption from "@/components/ui/my-select/select-option.vue"
+import ImageType from "@/components/table/models/image-type";
+import SelectOption from "@/components/ui/my-select/select-option.vue";
 
 @Component({
   components: { SelectOption },
   name: "my-select",
 })
 export default class MySelect extends Vue {
-  сonteiners: RowType[] = [];
-  soughtConteinerName = "";
+  сontainers: ImageType[] = [];
+  soughtContainerName = "";
   optionsVisible = false;
-  get serchConteiners() {
-    return this.сonteiners.filter((c: RowType) => c.name.toUpperCase().includes(this.soughtConteinerName.toUpperCase()))
+  get serchContainers() {
+    return this.сontainers.filter((c: ImageType) =>
+      c.name.toUpperCase().includes(this.soughtContainerName.toUpperCase())
+    );
   }
-  addConteiner(conteiner: RowType) {
-    this.soughtConteinerName = conteiner.name
-    this.$emit('add-conteiner', conteiner);
+  addContainer(container: ImageType) {
+    this.soughtContainerName = container.name;
+    this.$emit("add-container", container);
   }
-  
+
   created() {
     console.log("servers");
-    this.сonteiners = this.$mainStore.serverBox.possibleСonteiners;
-    console.log(this.сonteiners);
+    this.сontainers = this.$mainStore.serverBox.possibleСontainers;
+    console.log(this.сontainers);
   }
   mounted() {}
 }

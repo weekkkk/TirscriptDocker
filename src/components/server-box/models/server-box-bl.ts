@@ -1,21 +1,21 @@
 import ServerType from "@/components/server-box/models/server-type";
-import RowType from "@/components/table/models/row-type";
+import RowType from "@/components/table/models/image-type";
 
 export default class ServerBoxBL {
   servers: ServerType[] = [];
-  possibleСonteiners: RowType[] = []
-  constructor(servers: ServerType[], possibleСonteiners: RowType[]) {
+  possibleСontainers: RowType[] = []
+  constructor(servers: ServerType[], possibleСontainers: RowType[]) {
     this.servers = servers;
-    this.possibleСonteiners = possibleСonteiners;
+    this.possibleСontainers = possibleСontainers;
   }
   addServer(server) {
     server.id = Date.now();
     this.servers.push(server);
   }
-  addConteiner(conteiner, serverId) {
-    this.servers.forEach(s => s.id == serverId ? s.conteiners.push(conteiner):{})
+  addContainer(container, serverId) {
+    this.servers.forEach(s => s.id == serverId ? s.containers.push(container):{})
   }
-  removeConteiner(conteinerId, serverId) {
-    this.servers.forEach(s => s.id == serverId ? s.conteiners = s.conteiners.filter((c) => c.id != conteinerId):{})
+  removeContainer(containerId, serverId) {
+    this.servers.forEach(s => s.id == serverId ? s.containers = s.containers.filter((c) => c.id != containerId):{})
   }
 }

@@ -1,11 +1,11 @@
 <template>
 <div class="form">
   <div class="title">Добавление сервера</div>
-  <input type="text" placeholder="Название сервера" class="input" v-model="conteiner.name">
+  <input type="text" placeholder="Название сервера" class="input" v-model="container.name">
   <input type="text" placeholder="Url" class="input">
   <div class="buttons">
     <cancel-button class="cancel" @click.native="$emit('hide-dialog')">Отмена</cancel-button>
-    <add-button class="save" @click.native="$emit('add-server', conteiner)">Сохранить</add-button>
+    <add-button class="save" @click.native="$emit('add-server', container)">Сохранить</add-button>
   </div>
 </div>
 
@@ -23,7 +23,7 @@ import addButton from "@/components/ui/add-button.vue"
   name: "add-image-from",
 })
 export default class AddImageForm extends Vue {
-  conteiner: ServerType = {id: 0, name: "", conteiners: []}
+  container: ServerType = {id: 0, name: "", containers: []}
   constructor() {
     super();
   }

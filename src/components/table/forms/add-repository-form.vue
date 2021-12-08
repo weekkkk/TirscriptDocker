@@ -1,14 +1,14 @@
 <template>
 <div class="form-box">
   <div class="form">
-    <input type="text" placeholder="Введите версию" class="input" v-model="reposytory.version">
+    <input type="text" placeholder="Введите версию" class="input" v-model="repository.version">
     <my-button class="download-button">Загрузка архива</my-button>
   </div>
   <div class="icons">
     <div class="icon" @click="$emit('hide-form')">
       <img src="@/assets/icons/ui-components/cancel-mark.svg" >
     </div>
-    <div class="icon" @click="addReposytory">
+    <div class="icon" @click="addRepository">
       <img src="@/assets/icons/ui-components/add-mark.svg">
     </div>
   </div>
@@ -24,13 +24,13 @@ import myButton from "@/components/ui/my-button.vue"
 
 @Component({
   components: { cancelButton, myButton },
-  name: "add-image-from",
+  name: "add-image-form",
 })
 export default class AddRepositoryForm extends Vue {
-  reposytory: RowContentItemType = {id: 0, version: "", status: false};
-  addReposytory() {
-    console.log(this.reposytory);
-    this.$emit('add-reposytory', Object.assign({}, this.reposytory));
+  repository: RowContentItemType = {id: 0, version: "", status: false};
+  addRepository() {
+    console.log(this.repository);
+    this.$emit('add-repository', Object.assign({}, this.repository));
   }
   constructor() {
     super();

@@ -1,7 +1,7 @@
-import RowType from "@/components/table/models/row-type";
+import RowType from "@/components/table/models/image-type";
 
 export default interface ServerType {
   id: number,
   name: string,
-  conteiners: RowType[]
+  containers: RowType[]
 }

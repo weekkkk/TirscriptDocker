@@ -8,22 +8,22 @@
       </div> 
       <div 
       class="icon"
-      @click="$emit('show-dialog-add-conteiner', server.id)"
+      @click="$emit('show-dialog-add-container', server.id)"
       >
         <img src="@/assets/icons/ui-components/create.svg">
       </div>
     </div>
   </div>
-  <div class="add-image-message" v-if="server.conteiners.length == 0">
+  <div class="add-image-message" v-if="server.containers.length == 0">
     <img src="@/assets/icons/ui-components/add-image-message.svg">
     <div>Добавьте образ</div>
   </div>
-  <div class="server-containers-box" v-if="server.conteiners.length > 0">
+  <div class="server-containers-box" v-if="server.containers.length > 0">
     <server-container 
-    v-for="conteiner in server.conteiners"
-    :key="conteiner.id"
-    :conteiner="conteiner"
-    @remove-conteiner="removeConteiner"
+    v-for="container in server.containers"
+    :key="container.id"
+    :container="container"
+    @remove-container="removeContainer"
     />
   </div>
 </div>
@@ -33,18 +33,18 @@
 import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
 import ServerType from "@/components/server-box/models/server-type"
-import ServerConteiner from "@/components/server-box/server-container.vue";
+import ServerContainer from "@/components/server-box/server-container.vue";
 
 @Component({
-  components: { ServerConteiner },
+  components: { ServerContainer },
   name: "server-box",
 })
 export default class ServerBox extends Vue {
   @Prop(Object) readonly server: ServerType;
   
-  removeConteiner(conteinerId: number) {
-    console.log(conteinerId);
-    this.$emit('remove-conteiner', {conteinerId: conteinerId, serverId: this.server.id})
+  removeContainer(containerId: number) {
+    console.log(containerId);
+    this.$emit('remove-container', {containerId: containerId, serverId: this.server.id})
   }
   constructor() {
     super();

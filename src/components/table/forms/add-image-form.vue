@@ -13,23 +13,16 @@
 <script lang="ts">
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
-import RowType from "@/components/table/models/row-type"
+import ImageType from "@/components/table/models/image-type"
 import cancelButton from "@/components/ui/cancel-button.vue"
 import addButton from "@/components/ui/add-button.vue"
 
 @Component({
   components: { cancelButton, addButton },
-  name: "add-image-from",
+  name: "add-image-form",
 })
 export default class AddImageForm extends Vue {
-  row: RowType = {id: 0, name: "", content: [{id: 1, version: "123456789", status: false}], addRepositoryFormVisible: false};
-  constructor() {
-    super();
-  }
-  created() {
-    console.log("landing");
-  }
-  mounted() {}
+  row: ImageType = {id: 0, name: "", content: [{id: 1, version: "123456789", status: false}], addRepositoryFormVisible: false};
 }
 </script>
 

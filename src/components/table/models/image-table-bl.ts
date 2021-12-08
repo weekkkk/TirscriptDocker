@@ -1,19 +1,17 @@
-import RowType from "@/components/table/models/row-type";
-import RowContentItemType from "@/components/table/models/row-content-item-type"
-import mainStore from "@/plugins/mainStore";
+import ImageType from "@/components/table/models/image-type";
 
-export default class TableBl{
-  rows: RowType[] = [];
-  constructor(rows: RowType[]) {
+export default class ImageTableBl{
+  rows: ImageType[] = [];
+  constructor(rows: ImageType[]) {
     this.rows = rows;
   }
-  showAddReposytoryForm(rowId: number) {
+  showAddRepositoryForm(rowId: number) {
     this.rows.forEach(r => (r.id == rowId) ? r.addRepositoryFormVisible = true : r.addRepositoryFormVisible = false);
   }
-  hideAddReposytoryForm(rowId: number) {
+  hideAddRepositoryForm(rowId: number) {
     this.rows.forEach(r => (r.id == rowId) ? r.addRepositoryFormVisible = false : r.addRepositoryFormVisible = false);
   }
-  addRow(row: RowType) {
+  addRow(row: ImageType) {
     row.id = Date.now();
     this.rows.push(row);
   }
@@ -24,9 +22,9 @@ export default class TableBl{
   }
   removeRowContentItem(obj) {
     console.log(obj);
-    let row: RowType;
+    let row: ImageType;
     this.rows.forEach(r => (r.id == obj.rowId) ? row = r : {});
-    row.content = row.content.filter((i) => i.id != obj.reposytoryId)
+    row.content = row.content.filter((i) => i.id != obj.repositoryId)
   }
   removeRow(rowId: number) {
     this.rows = this.rows.filter((r) => r.id != rowId);

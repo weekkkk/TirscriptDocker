@@ -19,19 +19,19 @@ const router = new VueRouter({
       children: [
         {
           path: "",
-          redirect: "/servers"
-        },
-        {
-          path: "servers",
-          component: ServersPage
-        },
-        {
-          path: "",
           redirect: "/landing"
         },
         {
           path: "landing",
           component: LandingPage
+        },
+        {
+          path: "",
+          redirect: "/servers"
+        },
+        {
+          path: "servers",
+          component: ServersPage
         },
       ]
     },

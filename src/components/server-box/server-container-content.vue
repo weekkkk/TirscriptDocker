@@ -31,9 +31,9 @@ import { Component, Prop } from "vue-property-decorator";
 
 @Component({
   components: {},
-  name: "server-conteiner-content",
+  name: "server-container-content",
 })
-export default class ServerConteinerContent extends Vue {
+export default class ServerContainerContent extends Vue {
   @Prop(Boolean) readonly contentVisible: boolean;
   constructor() {
     super();
