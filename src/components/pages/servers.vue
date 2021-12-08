@@ -73,7 +73,6 @@ export default class ServersComponent extends Vue {
   }
   //Принимает объект, внутри которого id контейнера, который нужно удалить, и id сервера, из которого удаляется контейнер
   removeContainer(obj) {
-    console.log(obj);
     this.serverBox.removeContainer(obj.containerId, obj.serverId);
   }
 

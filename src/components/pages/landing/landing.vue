@@ -28,6 +28,7 @@
         :countPages="countPages"
         :currentPage="pagination.currentPage"
         @show-page="showPage"
+        v-if="countPages > 0"
       />
     </div>
   </layout>
@@ -75,12 +76,12 @@ export default class LandingComponent extends Vue {
 
   //Принимает объект, внутри которого id удаляемого репозитория и id строки, из которой нужно удалить репозиторий
   removeRepository(obj) {
-    this.table.removeRowContentItem(obj.imageId, obj.repositoryId);
+    this.table.removeRepository(obj.imageId, obj.repositoryId);
   }
   //Принимает объект, внутри которого репозиторий и id строки, в которую нужно добавить репозиторий
   addRepository(obj) {
-    this.table.addRowContentItem(obj.imageId, obj.repository);
-    this.table.hideAddRepositoryForm(obj.rowId);
+    this.table.addRepository(obj.imageId, obj.repository);
+    this.table.hideAddRepositoryForm(obj.imageId);
   }
   
   //Вызвается по клику на кнопку добавления репозитория в образ, принимает id образа и записывает его в переменную addRepositoryImageId, затем открывает диалогое окно настроек

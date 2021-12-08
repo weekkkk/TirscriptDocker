@@ -32,18 +32,10 @@ import MySelect from "@/components/ui/my-select/my-select.vue";
   name: "add-image-from",
 })
 export default class AddImageForm extends Vue {
-  // @Prop(Array) readonly сontainers: ImageType[];
   addedContainer: ImageType;
   addContainer(addedContainer: ImageType) {
     this.addedContainer = addedContainer;
   }
-  constructor() {
-    super();
-  }
-  created() {
-    console.log("landing");
-  }
-  mounted() {}
 }
 </script>
 

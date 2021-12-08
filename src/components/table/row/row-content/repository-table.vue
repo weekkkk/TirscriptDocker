@@ -1,6 +1,6 @@
 <template>
   <transition name="dropdown">
-    <div class="row-content" v-if="showRowContent">
+    <div class="row-content" v-if="showRepositoryTable">
       <repository-row
         @show-add-repository-form="$emit('show-add-repository-form')"
         @remove-repository="removeRepository"
@@ -33,7 +33,7 @@ export default class RepositoryTable extends Vue {
     this.$emit("remove-repository", repositoryId);
   }
   addRepository(repository: RepositoryType) {
-    this.$emit("add-repository", repository);
+    this.$emit("add-repository", Object.assign({}, repository));
   }
 }
 </script>

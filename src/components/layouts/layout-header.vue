@@ -29,6 +29,9 @@
           Добавать сервер
         </add-button>
     </div>
+    <!-- <div class="header-right">
+      <slot></slot>
+    </div> -->
   </header>
 </template>
 

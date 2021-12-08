@@ -38,13 +38,9 @@ export default class MySelect extends Vue {
     this.soughtContainerName = container.name;
     this.$emit("add-container", container);
   }
-
   created() {
-    console.log("servers");
     this.сontainers = this.$mainStore.serverBox.possibleСontainers;
-    console.log(this.сontainers);
   }
-  mounted() {}
 }
 </script>
 

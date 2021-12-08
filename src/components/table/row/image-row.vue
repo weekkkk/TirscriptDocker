@@ -2,15 +2,15 @@
   <div class="row">
     <div
       class="row-head"
-      :class="{ 'row-head-wish-row-content': showRowContent }"
-      @click="showRowContent = !showRowContent"
+      :class="{ 'row-head-wish-row-content': showRepositoryTable }"
+      @click="showRepositoryTable = !showRepositoryTable"
     >
       <div class="name">
         <img
           src="@/assets/icons/ui-components/select-arrow.svg"
-          :class="{ 'select-arrow-wish-row-content': showRowContent }"
+          :class="{ 'select-arrow-wish-row-content': showRepositoryTable }"
         />
-        <span>{{ row.name }}</span>
+        <span>{{ image.name }}</span>
       </div>
       <div class="icon">
         <img src="@/assets/icons/ui-components/download.svg" />

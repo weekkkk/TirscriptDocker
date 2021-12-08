@@ -16,13 +16,13 @@ export default class ImageTableBl{
     row.id = Date.now();
     this.rows.push(row);
   }
-  addRowContentItem(imageId: number, repository: RepositoryType) {
+  addRepository(imageId: number, repository: RepositoryType) {
     repository.id = Date.now();
     repository.status = true;
     this.rows.forEach(i => (i.id == imageId) ? i.content.push(repository) : {});
   }
-  removeRowContentItem(imageId: number, repositoryId: number) {
-    this.rows.forEach(i => (i.id == imageId) ? i.content.filter((r) => r.id != repositoryId) : {});
+  removeRepository(imageId: number, repositoryId: number) {
+    this.rows.forEach(i => (i.id == imageId) ? i.content = i.content.filter((r) => r.id != repositoryId) : {});
   }
   removeRow(rowId: number) {
     this.rows = this.rows.filter((r) => r.id != rowId);

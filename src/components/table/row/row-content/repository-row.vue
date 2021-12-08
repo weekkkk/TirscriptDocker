@@ -1,22 +1,22 @@
 <template>
   <div>
-    <div class="form" v-if="addRepositoryFormVisible && !contentItem.status">
+    <div class="form" v-if="addRepositoryFormVisible && !repository.status">
       <add-repository-form
         @hide-form="$emit('hide-form')"
         @add-repository="$emit('add-repository', repository)"
       />
     </div>
-    <!-- <loading-row-content-item :version="contentItem.version" /> -->
+    <!-- <loading-row-content-item :version="repository.version" /> -->
     <div class="repository">
       <div class="info-box">
-        <div class="repository-name">{{ contentItem.version }}</div>
-        <div class="repository-status-true" v-if="contentItem.status">
+        <div class="repository-name">{{ repository.version }}</div>
+        <div class="repository-status-true" v-if="repository.status">
           в репозитории
         </div>
         <div
           @click="$emit('show-add-repository-form')"
           class="repository-status-false"
-          v-if="!contentItem.status"
+          v-if="!repository.status"
         >
           добавить в репозиторий
         </div>
