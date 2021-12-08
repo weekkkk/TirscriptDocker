@@ -1,38 +1,38 @@
 <template>
-<div class="server-box">
-  <div class="server-header">
-    <div class="server-name">{{server.name}}</div>
-    <div class="header-icons">
-      <div class="icon">
-        <img src="@/assets/icons/ui-components/info.svg">
-      </div> 
-      <div 
-      class="icon"
-      @click="$emit('show-dialog-add-container', server.id)"
-      >
-        <img src="@/assets/icons/ui-components/create.svg">
+  <div class="server-box">
+    <div class="server-header">
+      <div class="server-name">{{ server.name }}</div>
+      <div class="header-icons">
+        <div class="icon">
+          <img src="@/assets/icons/ui-components/info.svg" />
+        </div>
+        <div
+          class="icon"
+          @click="$emit('show-dialog-add-container', server.id)"
+        >
+          <img src="@/assets/icons/ui-components/create.svg" />
+        </div>
       </div>
     </div>
+    <div class="add-image-message" v-if="server.containers.length == 0">
+      <img src="@/assets/icons/ui-components/add-image-message.svg" />
+      <div>Добавьте образ</div>
+    </div>
+    <div class="server-containers-box" v-if="server.containers.length > 0">
+      <server-container
+        v-for="container in server.containers"
+        :key="container.id"
+        :container="container"
+        @remove-container="removeContainer"
+      />
+    </div>
   </div>
-  <div class="add-image-message" v-if="server.containers.length == 0">
-    <img src="@/assets/icons/ui-components/add-image-message.svg">
-    <div>Добавьте образ</div>
-  </div>
-  <div class="server-containers-box" v-if="server.containers.length > 0">
-    <server-container 
-    v-for="container in server.containers"
-    :key="container.id"
-    :container="container"
-    @remove-container="removeContainer"
-    />
-  </div>
-</div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
-import ServerType from "@/components/server-box/models/server-type"
+import ServerType from "@/components/server-box/models/server-type";
 import ServerContainer from "@/components/server-box/server-container.vue";
 
 @Component({
@@ -41,19 +41,11 @@ import ServerContainer from "@/components/server-box/server-container.vue";
 })
 export default class ServerBox extends Vue {
   @Prop(Object) readonly server: ServerType;
-  
+
+  //Принимает id контейнера, который нужно удалить и передает через событие объект внутри которого находится id удаляемого контейнера и id сервера, из которого удаляется контейнер
   removeContainer(containerId: number) {
-    console.log(containerId);
-    this.$emit('remove-container', {containerId: containerId, serverId: this.server.id})
+    this.$emit("remove-container", { containerId: containerId, serverId: this.server.id });
   }
-  constructor() {
-    super();
-  }
-  created() {
-    console.log("servers");
-    // this.$mainStore.
-  }
-  mounted() {}
 }
 </script>
 
@@ -61,7 +53,7 @@ export default class ServerBox extends Vue {
 .server-box {
   display: flex;
   flex-direction: column;
-  background-color: #1D1E42;
+  background-color: #1d1e42;
   border-radius: 10px;
   width: calc((100vw - 100px - 24px) / 3);
   flex-grow: 1;

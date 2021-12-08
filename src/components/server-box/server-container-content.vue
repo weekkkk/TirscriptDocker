@@ -35,14 +35,6 @@ import { Component, Prop } from "vue-property-decorator";
 })
 export default class ServerContainerContent extends Vue {
   @Prop(Boolean) readonly contentVisible: boolean;
-  constructor() {
-    super();
-  }
-
-  created() {
-    console.log("servers");
-  }
-  mounted() {}
 }
 </script>
 

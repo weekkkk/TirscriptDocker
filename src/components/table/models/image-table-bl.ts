@@ -1,4 +1,5 @@
 import ImageType from "@/components/table/models/image-type";
+import RepositoryType from "./repository-type";
 
 export default class ImageTableBl{
   rows: ImageType[] = [];
@@ -6,25 +7,22 @@ export default class ImageTableBl{
     this.rows = rows;
   }
   showAddRepositoryForm(rowId: number) {
-    this.rows.forEach(r => (r.id == rowId) ? r.addRepositoryFormVisible = true : r.addRepositoryFormVisible = false);
+    this.rows.forEach(r => (r.id == rowId) ? r.addRepositoryFormVisible = true : {});
   }
   hideAddRepositoryForm(rowId: number) {
-    this.rows.forEach(r => (r.id == rowId) ? r.addRepositoryFormVisible = false : r.addRepositoryFormVisible = false);
+    this.rows.forEach(r => (r.id == rowId) ? r.addRepositoryFormVisible = false : {});
   }
   addRow(row: ImageType) {
     row.id = Date.now();
     this.rows.push(row);
   }
-  addRowContentItem(obj) {
-    obj.item.id = Date.now();
-    obj.item.status = true;
-    this.rows.forEach(r => (r.id == obj.rowId) ? r.content.push(obj.item) : {});
+  addRowContentItem(imageId: number, repository: RepositoryType) {
+    repository.id = Date.now();
+    repository.status = true;
+    this.rows.forEach(i => (i.id == imageId) ? i.content.push(repository) : {});
   }
-  removeRowContentItem(obj) {
-    console.log(obj);
-    let row: ImageType;
-    this.rows.forEach(r => (r.id == obj.rowId) ? row = r : {});
-    row.content = row.content.filter((i) => i.id != obj.repositoryId)
+  removeRowContentItem(imageId: number, repositoryId: number) {
+    this.rows.forEach(i => (i.id == imageId) ? i.content.filter((r) => r.id != repositoryId) : {});
   }
   removeRow(rowId: number) {
     this.rows = this.rows.filter((r) => r.id != rowId);

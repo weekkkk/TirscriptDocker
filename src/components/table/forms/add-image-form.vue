@@ -1,10 +1,10 @@
 <template>
 <div class="form">
   <div class="title">Добавление образа</div>
-  <input type="text" placeholder="Название образа" class="input" v-model="row.name">
+  <input type="text" placeholder="Название образа" class="input" v-model="image.name">
   <div class="buttons">
     <cancel-button class="cancel" @click.native="$emit('hide-dialog')">Отмена</cancel-button>
-    <add-button class="save" @click.native="$emit('add-image', row)">Сохранить</add-button>
+    <add-button class="save" @click.native="$emit('add-image', image)">Сохранить</add-button>
   </div>
 </div>
 
@@ -22,7 +22,7 @@ import addButton from "@/components/ui/add-button.vue"
   name: "add-image-form",
 })
 export default class AddImageForm extends Vue {
-  row: ImageType = {id: 0, name: "", content: [{id: 1, version: "123456789", status: false}], addRepositoryFormVisible: false};
+  image: ImageType = {id: 0, name: "", content: [{id: 1, version: "123456789", status: false}], addRepositoryFormVisible: false};
 }
 </script>
 

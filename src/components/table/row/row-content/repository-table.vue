@@ -6,9 +6,9 @@
         @remove-repository="removeRepository"
         @add-repository="addRepository"
         @hide-form="$emit('hide-form')"
-        v-for="contentItem in rowContent"
-        :contentItem="contentItem"
-        :key="contentItem.id"
+        v-for="repository in repositoryTable"
+        :repository="repository"
+        :key="repository.id"
         :addRepositoryFormVisible="addRepositoryFormVisible"
       />
     </div>
@@ -26,22 +26,15 @@ import Repository from "@/components/table/row/row-content/repository-row.vue";
   name: "repository-table",
 })
 export default class RepositoryTable extends Vue {
-  @Prop(Boolean) readonly showRowContent: boolean;
-  @Prop(Array) readonly rowContent: RepositoryType[];
+  @Prop(Boolean) readonly showRepositoryTable: boolean;
+  @Prop(Array) readonly repositoryTable: RepositoryType[];
   @Prop(Boolean) readonly addRepositoryFormVisible: boolean;
   removeRepository(repositoryId: number) {
-    console.log(repositoryId);
     this.$emit("remove-repository", repositoryId);
   }
   addRepository(repository: RepositoryType) {
-    console.log(repository);
     this.$emit("add-repository", repository);
   }
-  constructor() {
-    super();
-  }
-  created() {}
-  mounted() {}
 }
 </script>
 

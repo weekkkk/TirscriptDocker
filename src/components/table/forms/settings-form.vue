@@ -1,39 +1,34 @@
 <template>
-<div class="form">
-  <div class="title">Настройки</div>
-  <div class="subtitle">Билд машина</div>
-  <input type="text" placeholder="Введите" class="input">
-  <div class="subtitle">Билд машина</div>
-  <input type="text" placeholder="Введите логин" class="input">
-  <input type="text" placeholder="Введите пароль" class="input">
-  <input type="text" placeholder="Введите" class="input">
-  <div class="buttons">
-    <cancel-button @click.native="$emit('hide-dialog')">Отмена</cancel-button>
-    <add-button class="save" @click.native="$emit('show-add-repository-form')">Сохранить</add-button>
+  <div class="form">
+    <div class="title">Настройки</div>
+    <div class="subtitle">Билд машина</div>
+    <input type="text" placeholder="Введите" class="input" />
+    <div class="subtitle">Билд машина</div>
+    <input type="text" placeholder="Введите логин" class="input" />
+    <input type="text" placeholder="Введите пароль" class="input" />
+    <input type="text" placeholder="Введите" class="input" />
+    <div class="buttons">
+      <cancel-button class="cancel" @click.native="$emit('hide-dialog')"
+        >Отмена</cancel-button
+      >
+      <add-button class="save" @click.native="$emit('show-add-repository-form')"
+        >Сохранить</add-button
+      >
+    </div>
   </div>
-</div>
-
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
-import cancelButton from "@/components/ui/cancel-button.vue"
-import addButton from "@/components/ui/add-button.vue"
+import cancelButton from "@/components/ui/cancel-button.vue";
+import addButton from "@/components/ui/add-button.vue";
 
 @Component({
   components: { cancelButton, addButton },
   name: "settings-form",
 })
-export default class SettingsForm extends Vue {
-  constructor() {
-    super();
-  }
-  created() {
-    console.log("landing");
-  }
-  mounted() {}
-}
+export default class SettingsForm extends Vue {}
 </script>
 
 <style lang="less" scoped>
@@ -65,7 +60,7 @@ export default class SettingsForm extends Vue {
     margin-left: 12px;
   }
 }
-@media(max-width: 435px) {
+@media (max-width: 435px) {
   .title {
     font-size: 18px;
     margin-right: 30px;

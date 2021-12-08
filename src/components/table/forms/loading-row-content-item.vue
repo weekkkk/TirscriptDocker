@@ -1,34 +1,27 @@
 <template>
-<div>
-  <div class="repository">
-    <div class="repository-name">{{version}}</div>
-    <div class="loading-status">
-      <div class="loading-icon">
-        <img src="@/assets/icons/ui-components/loading.svg">
+  <div>
+    <div class="repository">
+      <div class="repository-name">{{ version }}</div>
+      <div class="loading-status">
+        <div class="loading-icon">
+          <img src="@/assets/icons/ui-components/loading.svg" />
+        </div>
+        <div>15% 0:12:07 мин <span>добавление в репозиторий</span></div>
       </div>
-      <div>15%  0:12:07 мин  <span>добавление в репозиторий</span></div>
     </div>
   </div>
-</div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import { Component,Prop } from "vue-property-decorator";
+import { Component, Prop } from "vue-property-decorator";
 
 @Component({
-  components: {  },
+  components: {},
   name: "loading-row-content-item",
 })
 export default class LoadingRowContentItem extends Vue {
   @Prop(String) readonly version: string;
-  constructor() {
-    super();
-  }
-  created() {
-    console.log("landing");
-  }
-  mounted() {}
 }
 </script>
 
@@ -52,7 +45,7 @@ export default class LoadingRowContentItem extends Vue {
     align-items: center;
     width: 100%;
     font-size: 15px;
-    color: #DCE1F1;
+    color: #dce1f1;
     .loading-icon {
       margin-right: 12px;
     }

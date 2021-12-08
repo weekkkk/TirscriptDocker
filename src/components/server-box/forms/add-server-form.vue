@@ -1,29 +1,43 @@
 <template>
-<div class="form">
-  <div class="title">Добавление сервера</div>
-  <input type="text" placeholder="Название сервера" class="input" v-model="container.name">
-  <input type="text" placeholder="Url" class="input">
-  <div class="buttons">
-    <cancel-button class="cancel" @click.native="$emit('hide-dialog')">Отмена</cancel-button>
-    <add-button class="save" @click.native="$emit('add-server', container)">Сохранить</add-button>
+  <div class="form">
+    <div class="title">Добавление сервера</div>
+    <input
+      type="text"
+      placeholder="Название сервера"
+      class="input"
+      v-model="container.name"
+    />
+    <input type="text" placeholder="Url" class="input" />
+    <div class="buttons">
+      <cancel-button 
+        class="cancel" 
+        @click.native="$emit('hide-dialog')"
+      >
+        Отмена
+      </cancel-button>
+      <add-button 
+        class="save" 
+        @click.native="$emit('add-server', container)"
+      >
+        Сохранить
+      </add-button>
+    </div>
   </div>
-</div>
-
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
-import ServerType from "@/components/server-box/models/server-type"
-import cancelButton from "@/components/ui/cancel-button.vue"
-import addButton from "@/components/ui/add-button.vue"
+import ServerType from "@/components/server-box/models/server-type";
+import cancelButton from "@/components/ui/cancel-button.vue";
+import addButton from "@/components/ui/add-button.vue";
 
 @Component({
   components: { cancelButton, addButton },
   name: "add-image-from",
 })
 export default class AddImageForm extends Vue {
-  container: ServerType = {id: 0, name: "", containers: []}
+  container: ServerType = { id: 0, name: "", containers: [] };
   constructor() {
     super();
   }
@@ -57,7 +71,7 @@ export default class AddImageForm extends Vue {
     margin-left: 12px;
   }
 }
-@media(max-width: 435px) {
+@media (max-width: 435px) {
   .title {
     font-size: 18px;
     margin-right: 30px;

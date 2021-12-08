@@ -1,44 +1,40 @@
 <template>
-<div class="server-container-box">
-  <div 
-  class="server-container" :class="{'server-container-content-visible': contentVisible}"
-  @click="contentVisible = !contentVisible"
-  >
-    <div class="arrow">
-      <img src="@/assets/icons/ui-components/select-arrow.svg">
-    </div>
-    <div class="container-title-box">
-      <div class="container-name">
-        {{container.name}}
+  <div class="server-container-box">
+    <div
+      class="server-container"
+      :class="{ 'server-container-content-visible': contentVisible }"
+      @click="contentVisible = !contentVisible"
+    >
+      <div class="arrow">
+        <img src="@/assets/icons/ui-components/select-arrow.svg" />
       </div>
-      <div class="repository-name">
-        123456789
+      <div class="container-title-box">
+        <div class="container-name">
+          {{ container.name }}
+        </div>
+        <div class="repository-name">123456789</div>
       </div>
-    </div>
-    <div class="container-icons">
-      <div class="icon">
-        <img src="@/assets/icons/ui-components/play.svg">
-      </div>
-      <div class="icon">
-        <img src="@/assets/icons/ui-components/pause.svg">
-      </div>
-      <div 
-      class="icon"
-      @click="$emit('remove-container', container.id)"
-      >
-        <img src="@/assets/icons/ui-components/remove.svg">
+      <div class="container-icons">
+        <div class="icon">
+          <img src="@/assets/icons/ui-components/play.svg" />
+        </div>
+        <div class="icon">
+          <img src="@/assets/icons/ui-components/pause.svg" />
+        </div>
+        <div class="icon" @click="$emit('remove-container', container.id)">
+          <img src="@/assets/icons/ui-components/remove.svg" />
+        </div>
       </div>
     </div>
+    <server-container-content :contentVisible="contentVisible" />
   </div>
-  <server-container-content :contentVisible="contentVisible" />
-</div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
-import ServerContainerContent from "@/components/server-box/server-container-content.vue"
-import ImageType from "@/components/table/models/image-type"
+import ServerContainerContent from "@/components/server-box/server-container-content.vue";
+import ImageType from "@/components/table/models/image-type";
 
 @Component({
   components: { ServerContainerContent },
@@ -46,15 +42,8 @@ import ImageType from "@/components/table/models/image-type"
 })
 export default class ServerContainer extends Vue {
   @Prop(Object) readonly container: ImageType;
-  
+
   contentVisible = false;
-  constructor() {
-    super();
-  }
-  created() {
-    console.log("servers");
-  }
-  mounted() {}
 }
 </script>
 
@@ -87,12 +76,12 @@ export default class ServerContainer extends Vue {
       }
       .repository-name {
         padding-right: 15px;
-        color: #586EB9;
+        color: #586eb9;
         margin-left: 10px;
         word-wrap: break-word;
       }
     }
-    
+
     .container-icons {
       display: flex;
       width: 100%;

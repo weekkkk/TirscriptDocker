@@ -5,9 +5,9 @@
       @remove-repository="removeRepository"
       @add-repository="addRepository"
       @hide-form="hideAddRepositoryForm"
-      v-for="row in rows"
-      :row="row"
-      :key="row.id"
+      v-for="image in images"
+      :image="image"
+      :key="image.id"
     />
   </div>
 </template>
@@ -23,25 +23,23 @@ import ImageRow from "@/components/table/row/image-row.vue";
   name: "image-table",
 })
 export default class ImageTable extends Vue {
-  @Prop(Array) readonly rows: ImageType[];
-  showAddRepositoryForm(rowId: number) {
-    console.log(rowId);
-    this.$emit("show-add-repository-form", rowId);
+  @Prop(Array) readonly images: ImageType[];
+
+  showAddRepositoryForm(imageId: number) {
+    this.$emit("show-add-repository-form", imageId);
   }
-  hideAddRepositoryForm(rowId: number) {
-    this.$emit("hide-form", rowId);
-  }
-  removeRepository(obj) {
-    console.log(obj);
-    this.$emit("remove-repository", obj);
-  }
-  addRepository(obj) {
-    console.log(obj);
-    this.$emit("add-repository", obj);
+  hideAddRepositoryForm(imageId: number) {
+    this.$emit("hide-form", imageId);
   }
 
-  created() {}
-  mounted() {}
+  //Принимает и через событие передает объект, внутри которого id удаляемого репозитория и id строки, из которой нужно удалить репозиторий
+  removeRepository(obj) {
+    this.$emit("remove-repository", obj);
+  }
+  //Принимает и через событие передает объект, внутри которого репозиторий и id строки, в которую нужно добавить репозиторий
+  addRepository(obj) {
+    this.$emit("add-repository", obj);
+  }
 }
 </script>
 

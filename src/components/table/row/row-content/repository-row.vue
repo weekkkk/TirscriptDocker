@@ -3,7 +3,7 @@
     <div class="form" v-if="addRepositoryFormVisible && !contentItem.status">
       <add-repository-form
         @hide-form="$emit('hide-form')"
-        @add-repository="addRepository"
+        @add-repository="$emit('add-repository', repository)"
       />
     </div>
     <!-- <loading-row-content-item :version="contentItem.version" /> -->
@@ -25,7 +25,7 @@
         <div class="icon">
           <img src="@/assets/icons/ui-components/unload.svg" class="icon" />
         </div>
-        <div class="icon" @click="removeRepository">
+        <div class="icon" @click="$emit('remove-repository', repository.id)">
           <img src="@/assets/icons/ui-components/remove.svg" />
         </div>
       </div>
@@ -42,17 +42,8 @@ import RepositoryType from "@/components/table/models/repository-type";
   name: "repository-row",
 })
 export default class RepositoryRow extends Vue {
-  @Prop(Object) readonly contentItem: RepositoryType;
+  @Prop(Object) readonly repository: RepositoryType;
   @Prop(Boolean) readonly addRepositoryFormVisible: boolean;
-
-  addRepository(repository: RepositoryType) {
-    console.log(repository);
-    this.$emit("add-repository", repository);
-  }
-  removeRepository() {
-    console.log(this.contentItem.id);
-    this.$emit("remove-repository", this.contentItem.id);
-  }
 }
 </script>
 

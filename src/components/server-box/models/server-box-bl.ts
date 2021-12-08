@@ -13,9 +13,9 @@ export default class ServerBoxBL {
     this.servers.push(server);
   }
   addContainer(container, serverId) {
-    this.servers.forEach(s => s.id == serverId ? s.containers.push(container):{})
+    this.servers.forEach(s => s.id == serverId ? s.containers.push(container) : {})
   }
   removeContainer(containerId, serverId) {
-    this.servers.forEach(s => s.id == serverId ? s.containers = s.containers.filter((c) => c.id != containerId):{})
+    this.servers.forEach(s => s.id == serverId ? s.containers = s.containers.filter((c) => c.id != containerId) : {})
   }
 }

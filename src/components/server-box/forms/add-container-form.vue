@@ -1,23 +1,31 @@
 <template>
-<div class="form">
-  <div class="title">Добавление контейнера</div>
-  <my-select
-  @add-container="addContainer" 
-  />
-  <div class="buttons">
-    <cancel-button class="cancel" @click.native="$emit('hide-dialog')">Отмена</cancel-button>
-    <add-button class="save" @click.native="$emit('add-container', addedContainer)">Сохранить</add-button>
+  <div class="form">
+    <div class="title">Добавление контейнера</div>
+    <my-select @add-container="addContainer" />
+    <div class="buttons">
+      <cancel-button 
+        class="cancel" 
+        @click.native="$emit('hide-dialog')"
+      >
+      Отмена
+      </cancel-button>
+      <add-button
+        class="save"
+        @click.native="$emit('add-container', addedContainer)"
+      >
+      Сохранить
+      </add-button>
+    </div>
   </div>
-</div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
-import ImageType from "@/components/table/models/image-type"
-import cancelButton from "@/components/ui/cancel-button.vue"
-import addButton from "@/components/ui/add-button.vue"
-import MySelect from "@/components/ui/my-select/my-select.vue"
+import ImageType from "@/components/table/models/image-type";
+import cancelButton from "@/components/ui/cancel-button.vue";
+import addButton from "@/components/ui/add-button.vue";
+import MySelect from "@/components/ui/my-select/my-select.vue";
 
 @Component({
   components: { cancelButton, addButton, MySelect },
@@ -54,7 +62,7 @@ export default class AddImageForm extends Vue {
     margin-left: 12px;
   }
 }
-@media(max-width: 435px) {
+@media (max-width: 435px) {
   .title {
     font-size: 18px;
     margin-right: 30px;

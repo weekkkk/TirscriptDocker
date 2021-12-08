@@ -1,44 +1,38 @@
 <template>
-<div class="form-box">
-  <div class="form">
-    <input type="text" placeholder="Введите версию" class="input" v-model="repository.version">
-    <my-button class="download-button">Загрузка архива</my-button>
-  </div>
-  <div class="icons">
-    <div class="icon" @click="$emit('hide-form')">
-      <img src="@/assets/icons/ui-components/cancel-mark.svg" >
+  <div class="form-box">
+    <div class="form">
+      <input
+        type="text"
+        placeholder="Введите версию"
+        class="input"
+        v-model="repository.version"
+      />
+      <my-button class="download-button">Загрузка архива</my-button>
     </div>
-    <div class="icon" @click="addRepository">
-      <img src="@/assets/icons/ui-components/add-mark.svg">
+    <div class="icons">
+      <div class="icon" @click="$emit('hide-form')">
+        <img src="@/assets/icons/ui-components/cancel-mark.svg" />
+      </div>
+      <div class="icon" @click="$emit('add-repository', repository)">
+        <img src="@/assets/icons/ui-components/add-mark.svg" />
+      </div>
     </div>
   </div>
-</div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
-import RowContentItemType from "@/components/table/models/row-content-item-type"
-import cancelButton from "@/components/ui/cancel-button.vue"
-import myButton from "@/components/ui/my-button.vue"
+import RepositoryType from "@/components/table/models/repository-type";
+import cancelButton from "@/components/ui/cancel-button.vue";
+import myButton from "@/components/ui/my-button.vue";
 
 @Component({
   components: { cancelButton, myButton },
   name: "add-image-form",
 })
 export default class AddRepositoryForm extends Vue {
-  repository: RowContentItemType = {id: 0, version: "", status: false};
-  addRepository() {
-    console.log(this.repository);
-    this.$emit('add-repository', Object.assign({}, this.repository));
-  }
-  constructor() {
-    super();
-  }
-  created() {
-    console.log("landing");
-  }
-  mounted() {}
+  repository: RepositoryType = { id: 0, version: "", status: false };
 }
 </script>
 
@@ -87,7 +81,7 @@ export default class AddRepositoryForm extends Vue {
       }
     }
   }
-  @media(max-width: 830px) {
+  @media (max-width: 830px) {
     flex-direction: column;
     align-items: flex-end;
     .form {
@@ -112,7 +106,7 @@ export default class AddRepositoryForm extends Vue {
       }
     }
   }
-  @media(max-width: 435px) {
+  @media (max-width: 435px) {
     .input {
       padding: 10px 15px;
       font-size: 12px;
@@ -124,5 +118,4 @@ export default class AddRepositoryForm extends Vue {
     }
   }
 }
-
 </style>

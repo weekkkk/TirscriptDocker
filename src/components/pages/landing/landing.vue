@@ -5,7 +5,7 @@
       @remove-repository="removeRepository"
       @add-repository="addRepository"
       @hide-form="hideAddRepositoryForm"
-      :rows="shortTable"
+      :images="shortTable"
     />
     <my-dialog
       :showOne="dialogAddImageForm.show"
@@ -26,7 +26,7 @@
     <div class="pagination">
       <pagination
         :countPages="countPages"
-        :curentPage="pagination.curentPage"
+        :currentPage="pagination.currentPage"
         @show-page="showPage"
       />
     </div>
@@ -52,72 +52,62 @@ import PaginationBl from "@/components/ui/pagination/pagination-bl";
 export default class LandingComponent extends Vue {
   pageName = "Название проекта";
   table = new TableBL([]);
-  pagination = new PaginationBl(10, 1);
+  pagination = new PaginationBl(10, 1); //Модель для пагинации, в которую передаются кол-во образов на одной странице и текущая страница
   get shortTable() {
-    return this.pagination.shortTable(this.table.rows);
+    return this.pagination.shortTable(this.table.rows); //Возвращает посты, которые находятся на текущей странице
   }
   get countPages() {
-    return this.pagination.countPagesFunc(this.table.rows);
+    return this.pagination.countPagesFunc(this.table.rows); //Возвращает общеее кол-во страниц пагинации
   }
+  //Вызывается при смене страницы, принимает номер страницы, на которую хочет перейти пользователь и присваивает его currentPage
   showPage(page: number) {
-    this.pagination.curentPage = page;
+    this.pagination.currentPage = page;
   }
-  constructor() {
-    super();
-  }
-  dialogAddImageForm = new DialogBL(false);
-  dialogSettingsForm = new DialogBL(false);
-  addRepositoryRowId: number = 0;
+
+  dialogAddImageForm = new DialogBL(false); //Модель для диалогового окна добавления образа, открывается при добавлении нового образа
+  dialogSettingsForm = new DialogBL(false); //Модель для диалогового окна с настройками билд машины, открывается при добавлении нового репозитория
+  addRepositoryImageId: number; //Переменна, в которую записывается id образа, в котором должна открыться форма для добавления репозитория 
+  
   addImage(row: ImageType) {
     this.table.addRow(row);
     this.dialogAddImageForm.hideDialog();
-    this.$mainStore.table.rows = this.table.rows;
-    console.log(this.$mainStore.table.rows);
   }
+
+  //Принимает объект, внутри которого id удаляемого репозитория и id строки, из которой нужно удалить репозиторий
   removeRepository(obj) {
-    console.log(obj);
-    this.table.removeRowContentItem(obj);
-    this.$mainStore.table.rows = this.table.rows;
-    console.log(this.$mainStore.table.rows);
+    this.table.removeRowContentItem(obj.imageId, obj.repositoryId);
   }
+  //Принимает объект, внутри которого репозиторий и id строки, в которую нужно добавить репозиторий
   addRepository(obj) {
-    console.log(obj);
-    this.table.addRowContentItem(obj);
+    this.table.addRowContentItem(obj.imageId, obj.repository);
     this.table.hideAddRepositoryForm(obj.rowId);
-    this.$mainStore.table.rows = this.table.rows;
-    console.log(this.$mainStore.table.rows);
   }
-  //Вызвается по клику на кнопку добавления репозитория в образ, принимает id образа и записывает его в переменную addRepositoryRowId, затем открывает диалогое окно настроек
-  showAddRepositoryFormStart(rowId: number) {
-    console.log(rowId);
-    this.addRepositoryRowId = rowId;
+  
+  //Вызвается по клику на кнопку добавления репозитория в образ, принимает id образа и записывает его в переменную addRepositoryImageId, затем открывает диалогое окно настроек
+  showAddRepositoryFormStart(imageId: number) {
+    this.addRepositoryImageId = imageId;
     this.dialogSettingsForm.showDialog();
   }
-  //Вызывается после клика на кнопку сохранить в диалоговом окне настроек 'settings-form', открывает внутри образа с id равным addRepositoryRowId форму для добавления репозитория
+  //Вызывается после клика на кнопку сохранить в диалоговом окне настроек 'settings-form', открывает внутри образа с id равным addRepositoryImageId форму для добавления репозитория
   showAddRepositoryFormEnd() {
-    this.table.showAddRepositoryForm(this.addRepositoryRowId);
-    console.log(this.table.rows);
-
+    this.table.showAddRepositoryForm(this.addRepositoryImageId);
     this.dialogSettingsForm.hideDialog();
   }
-  hideAddRepositoryForm(rowId: number) {
-    this.table.hideAddRepositoryForm(rowId);
+  //Вызывается по клику на кнопку отмены в форме добавления репозитория 'add-repository-form', принимает id строки в которой находится открытая форма и закрывает ее
+  hideAddRepositoryForm(imageId: number) {
+    this.table.hideAddRepositoryForm(imageId);
   }
+  //Вызывается по клику на крестик или задний фон диалогового окна и закрывает его, т.к. открыто может быть только одно диалоговое окно, то проверяется открыто ли 'dialogAddImageForm'
   hideDialogs() {
-    this.dialogAddImageForm.hideDialog();
-    this.dialogSettingsForm.hideDialog();
+    this.dialogAddImageForm.show ? this.dialogAddImageForm.hideDialog() : this.dialogSettingsForm.hideDialog();
   }
+  
   created() {
-    console.log("landing");
     this.table = this.$mainStore.table;
-    console.log(this.$mainStore.table);
   }
   beforeRouteUpdate() {
     this.$mainStore.table = this.table;
     console.log(this.$mainStore.table);
-  }
-  mounted() {
-    console.log(this.pagination.countPages);
   }
 }
 </script>

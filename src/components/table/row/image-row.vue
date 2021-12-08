@@ -17,14 +17,13 @@
       </div>
     </div>
     <repository-table
-      @show-add-repository-form="showAddRepositoryForm()"
+      @show-add-repository-form="$emit('show-add-repository-form', image.id)"
       @remove-repository="removeRepository"
       @add-repository="addRepository"
-      @hide-form="hideAddRepositoryForm()"
-      :showRowContent="showRowContent"
-      :rowContent="row.content"
-      :rowId="row.id"
-      :addRepositoryFormVisible="row.addRepositoryFormVisible"
+      @hide-form="$emit('hide-form', image.id)"
+      :showRepositoryTable="showRepositoryTable"
+      :repositoryTable="image.content"
+      :addRepositoryFormVisible="image.addRepositoryFormVisible"
     />
   </div>
 </template>
@@ -41,31 +40,17 @@ import RepositoryTable from "@/components/table/row/row-content/repository-table
   name: "image-row",
 })
 export default class ImageRow extends Vue {
-  @Prop(Object) readonly row: ImageType;
-  showRowContent = false;
-  showAddRepositoryForm() {
-    console.log(this.row.id);
-    this.$emit("show-add-repository-form", this.row.id);
-  }
-  hideAddRepositoryForm() {
-    this.$emit("hide-form", this.row.id);
-  }
+  @Prop(Object) readonly image: ImageType;
+  showRepositoryTable = false; //Модель, которая контролирует отображение таблицы репозиториев 'repository-table'
+
+  //Принимает id удаляемого репозитория и создает событие, которое передает объект, внутри которого id удаляемого репозитория и id строки, из которой нужно удалить репозиторий
   removeRepository(repositoryId: number) {
-    console.log(repositoryId);
-    this.$emit("remove-repository", {
-      repositoryId: repositoryId,
-      rowId: this.row.id,
-    });
+    this.$emit("remove-repository", { repositoryId: repositoryId, imageId: this.image.id });
   }
+  //Принимает репозитории и создает событие, которое передает объект, внутри которого репозиторий и id строки, в которую нужно добавить репозиторий
   addRepository(repository: RepositoryType) {
-    console.log(repository);
-    this.$emit("add-repository", { item: repository, rowId: this.row.id });
+    this.$emit("add-repository", { repository: repository, imageId: this.image.id });
   }
-  constructor() {
-    super();
-  }
-  created() {}
-  mounted() {}
 }
 </script>
 
