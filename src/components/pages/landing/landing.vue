@@ -1,5 +1,9 @@
 <template>
-  <layout @add-image="dialogAddImageForm.showDialog()" :pageName="pageName">
+  <layout :pageName="pageName">
+    <landing-header-right
+      @show-dialog-add-image-form="dialogAddImageForm.showDialog()"
+      slot="header-right"
+    />
     <image-table
       @show-add-repository-form="showAddRepositoryFormStart"
       @remove-repository="removeRepository"
@@ -45,15 +49,22 @@ import addImageForm from "@/components/table/forms/add-image-form.vue";
 import ImageType from "@/components/table/models/image-type";
 import Pagination from "@/components/ui/pagination/pagination.vue";
 import PaginationBl from "@/components/ui/pagination/pagination-bl";
+import LandingHeaderRight from "@/components/pages/landing/landing-header-right.vue";
 
 @Component({
-  components: { ImageTable, myDialog, addImageForm, Pagination },
+  components: {
+    ImageTable,
+    myDialog,
+    addImageForm,
+    Pagination,
+    LandingHeaderRight,
+  },
   name: "landing",
 })
 export default class LandingComponent extends Vue {
   pageName = "Название проекта";
   table = new TableBL([]);
-  pagination = new PaginationBl(10, 1); //Модель для пагинации, в которую передаются кол-во образов на одной странице и текущая страница
+  pagination = new PaginationBl(1, 1); //Модель для пагинации, в которую передаются кол-во образов на одной странице и текущая страница
   get shortTable() {
     return this.pagination.shortTable(this.table.rows); //Возвращает посты, которые находятся на текущей странице
   }
@@ -67,8 +78,8 @@ export default class LandingComponent extends Vue {
 
   dialogAddImageForm = new DialogBL(false); //Модель для диалогового окна добавления образа, открывается при добавлении нового образа
   dialogSettingsForm = new DialogBL(false); //Модель для диалогового окна с настройками билд машины, открывается при добавлении нового репозитория
-  addRepositoryImageId: number; //Переменна, в которую записывается id образа, в котором должна открыться форма для добавления репозитория 
-  
+  addRepositoryImageId: number; //Переменна, в которую записывается id образа, в котором должна открыться форма для добавления репозитория
+
   addImage(row: ImageType) {
     this.table.addRow(row);
     this.dialogAddImageForm.hideDialog();
@@ -83,7 +94,7 @@ export default class LandingComponent extends Vue {
     this.table.addRepository(obj.imageId, obj.repository);
     this.table.hideAddRepositoryForm(obj.imageId);
   }
-  
+
   //Вызвается по клику на кнопку добавления репозитория в образ, принимает id образа и записывает его в переменную addRepositoryImageId, затем открывает диалогое окно настроек
   showAddRepositoryFormStart(imageId: number) {
     this.addRepositoryImageId = imageId;
@@ -100,11 +111,20 @@ export default class LandingComponent extends Vue {
   }
   //Вызывается по клику на крестик или задний фон диалогового окна и закрывает его, т.к. открыто может быть только одно диалоговое окно, то проверяется открыто ли 'dialogAddImageForm'
   hideDialogs() {
-    this.dialogAddImageForm.show ? this.dialogAddImageForm.hideDialog() : this.dialogSettingsForm.hideDialog();
+    this.dialogAddImageForm.show
+      ? this.dialogAddImageForm.hideDialog()
+      : this.dialogSettingsForm.hideDialog();
   }
-  
+
   created() {
     this.table = this.$mainStore.table;
+    this.$api.ServiceConfigure.getImageInfoAsync({ ImageId: 20089 })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   beforeRouteUpdate() {
     this.$mainStore.table = this.table;
@@ -120,7 +140,6 @@ export default class LandingComponent extends Vue {
 .pagination {
   margin-top: 20px;
   display: flex;
-  width: 100%;
   justify-content: flex-end;
 }
 </style>

@@ -3,7 +3,7 @@
     <div class="form" v-if="addRepositoryFormVisible && !repository.status">
       <add-repository-form
         @hide-form="$emit('hide-form')"
-        @add-repository="$emit('add-repository', repository)"
+        @add-repository="addRepository"
       />
     </div>
     <!-- <loading-row-content-item :version="repository.version" /> -->
@@ -13,21 +13,18 @@
         <div class="repository-status-true" v-if="repository.status">
           в репозитории
         </div>
-        <div
-          @click="$emit('show-add-repository-form')"
+        <ui-add-to-repository-btn
           class="repository-status-false"
+          @click.native="$emit('show-add-repository-form')"
           v-if="!repository.status"
-        >
-          добавить в репозиторий
-        </div>
+        />
       </div>
       <div class="repository-icons">
-        <div class="icon">
-          <img src="@/assets/icons/ui-components/unload.svg" class="icon" />
-        </div>
-        <div class="icon" @click="$emit('remove-repository', repository.id)">
-          <img src="@/assets/icons/ui-components/remove.svg" />
-        </div>
+        <ui-unload-btn class="icon" />
+        <ui-trash-btn
+          @click.native="$emit('remove-repository', repository.id)"
+          class="icon"
+        />
       </div>
     </div>
   </div>
@@ -44,6 +41,10 @@ import RepositoryType from "@/components/table/models/repository-type";
 export default class RepositoryRow extends Vue {
   @Prop(Object) readonly repository: RepositoryType;
   @Prop(Boolean) readonly addRepositoryFormVisible: boolean;
+
+  addRepository(repository: RepositoryType) {
+    this.$emit("add-repository", repository);
+  }
 }
 </script>
 
@@ -93,13 +94,6 @@ export default class RepositoryRow extends Vue {
     display: flex;
     .icon {
       margin-left: 10px;
-      cursor: pointer;
-      &:hover {
-        filter: brightness(115%);
-      }
-      &:active {
-        filter: brightness(130%);
-      }
     }
   }
   @media (max-width: 600px) {

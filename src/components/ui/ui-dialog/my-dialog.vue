@@ -44,7 +44,7 @@ export default class DialogComponent extends Vue {
   .box {
     width: 640px;
     background-color: #272851;
-    padding: 30px 30px 50px 30px;
+    padding: 30px 30px 40px 30px;
     border-radius: 10px;
     @media(max-width: 600px) {
       width: 80%;

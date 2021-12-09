@@ -1,10 +1,10 @@
 <template>
 <div class="form">
   <div class="title">Добавление образа</div>
-  <input type="text" placeholder="Название образа" class="input" v-model="image.name">
+  <ui-input :name="'Название'" :placeholder="'Имя'" :value="image.name" :isError="getIsError" v-model="image.name"/>
   <div class="buttons">
     <cancel-button class="cancel" @click.native="$emit('hide-dialog')">Отмена</cancel-button>
-    <add-button class="save" @click.native="$emit('add-image', image)">Сохранить</add-button>
+    <add-button class="save" @click.native="image.name == '' ? isError = true : $emit('add-image', image)">Сохранить</add-button>
   </div>
 </div>
 
@@ -14,15 +14,20 @@
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
 import ImageType from "@/components/table/models/image-type"
-import cancelButton from "@/components/ui/cancel-button.vue"
-import addButton from "@/components/ui/add-button.vue"
+import CancelButton from "@/components/ui/buttons/cancel-button.vue"
+import AddButton from "@/components/ui/buttons/add-button.vue"
+import UiInput from "@/components/ui/ui-input.vue"
 
 @Component({
-  components: { cancelButton, addButton },
+  components: { CancelButton, AddButton, UiInput },
   name: "add-image-form",
 })
 export default class AddImageForm extends Vue {
   image: ImageType = {id: 0, name: "", content: [{id: 1, version: "123456789", status: false}], addRepositoryFormVisible: false};
+  isError = false;
+  get getIsError() {
+    return this.isError ? this.isError = this.image.name=='' : this.isError;
+  }
 }
 </script>
 
@@ -33,14 +38,14 @@ export default class AddImageForm extends Vue {
   margin-bottom: 50px;
   z-index: 1;
 }
-.input {
-  color: #fff;
-  width: 100%;
-  padding: 15px 30px;
-  border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
-  border: none;
-}
+// .input {
+//   color: #fff;
+//   width: 100%;
+//   padding: 15px 30px;
+//   border-radius: 10px;
+//   background-color: rgba(0, 0, 0, 0.5);
+//   border: none;
+// }
 .buttons {
   display: flex;
   justify-content: flex-end;
@@ -55,10 +60,10 @@ export default class AddImageForm extends Vue {
     margin-right: 30px;
     margin-bottom: 30px;
   }
-  .input {
-    font-size: 12px;
-    margin-top: 20px;
-  }
+  // .input {
+  //   font-size: 12px;
+  //   margin-top: 20px;
+  // }
   .buttons {
     margin-top: 25px;
     flex-direction: column-reverse;

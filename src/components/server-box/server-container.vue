@@ -15,15 +15,9 @@
         <div class="repository-name">123456789</div>
       </div>
       <div class="container-icons">
-        <div class="icon">
-          <img src="@/assets/icons/ui-components/play.svg" />
-        </div>
-        <div class="icon">
-          <img src="@/assets/icons/ui-components/pause.svg" />
-        </div>
-        <div class="icon" @click="$emit('remove-container', container.id)">
-          <img src="@/assets/icons/ui-components/remove.svg" />
-        </div>
+        <ui-play-btn class="icon" />
+        <ui-pause-btn class="icon" />
+        <ui-trash-btn @click.native="$emit('remove-container', container.id)" class="icon"/>
       </div>
     </div>
     <server-container-content :contentVisible="contentVisible" />
@@ -89,12 +83,6 @@ export default class ServerContainer extends Vue {
       flex-flow: wrap;
       .icon {
         margin-left: 6px;
-        &:hover {
-          filter: brightness(115%);
-        }
-        &:active {
-          filter: brightness(130%);
-        }
       }
     }
   }

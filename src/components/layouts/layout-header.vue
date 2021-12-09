@@ -1,47 +1,21 @@
 <template>
   <header class="header">
     <div class="header-left">
-      <div 
-      class="back-button"
-      @click="pushOnBackPage()">
-        <img src="@/assets/icons/ui-components/back.svg">
-      </div>
-      <div class="project-name">{{pageName}}</div>
+      <ui-back-btn @click.native="$router.go(-1)" />
+      <div class="title">{{ pageName }}</div>
     </div>
-    <div class="header-right" v-if="pageName == 'Название проекта'">
-        <my-button 
-        class="server-button"
-        @click.native="pushOnServers()"
-        >Сервера</my-button>
-        <div class="icons-box">
-          <div class="icon">
-            <img src="@/assets/icons/ui-components/settings.svg">
-          </div>
-          <div @click="$emit('add-image')" class="icon">
-            <img src="@/assets/icons/ui-components/create.svg">
-          </div>
-        </div>
-    </div>
-
-    <div class="header-right" v-if="pageName == 'Страница серверов'">
-        <add-button class="server-button" @click.native="$emit('show-dialog-add-server')"> 
-          <img src="@/assets/icons/ui-components/plus-symbol.svg">
-          Добавать сервер
-        </add-button>
-    </div>
-    <!-- <div class="header-right">
-      <slot></slot>
-    </div> -->
+    <slot></slot>
   </header>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
-import myButton from "@/components/ui/my-button.vue";
+import MyButton from "@/components/ui/buttons/my-button.vue";
+import UiBackBtn from "@/components/ui/buttons/ui-back-btn.vue"
 
 @Component({
-  components: { myButton },
+  components: { MyButton, UiBackBtn },
   name: "layout-header",
 })
 
@@ -76,30 +50,9 @@ export default class LayoutHeaderComponent extends Vue {
         filter: brightness(130%);
       }
     }
-    .project-name {
+    .title {
       margin-left: 15px;
       font-size: 24px;
-    }
-  }
-  .header-right {
-    display: flex;
-    .server-button {
-      img {
-        margin-right: 15px;
-      }
-    }
-    .icons-box {
-      display: flex;
-      .icon {
-        margin-left: 10px;
-        cursor: pointer;
-        &:hover {
-          filter: brightness(115%);
-        }
-        &:active {
-          filter: brightness(130%);
-        }
-      }
     }
   }
   @media(max-width: 600px) {

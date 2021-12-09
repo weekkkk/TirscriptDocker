@@ -12,9 +12,7 @@
         />
         <span>{{ image.name }}</span>
       </div>
-      <div class="icon">
-        <img src="@/assets/icons/ui-components/download.svg" />
-      </div>
+      <ui-upload-btn class="icon"/>
     </div>
     <repository-table
       @show-add-repository-form="$emit('show-add-repository-form', image.id)"
@@ -83,12 +81,6 @@ export default class ImageRow extends Vue {
     .icon {
       display: flex;
       align-items: center;
-      &:hover {
-        filter: brightness(115%);
-      }
-      &:active {
-        filter: brightness(130%);
-      }
     }
   }
   .row-head-wish-row-content {

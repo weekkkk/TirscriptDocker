@@ -2,11 +2,11 @@
   <div class="form">
     <div class="title">Настройки</div>
     <div class="subtitle">Билд машина</div>
-    <input type="text" placeholder="Введите" class="input" />
+    <ui-input :name="'URL'" type="text" :placeholder="'Введите'" class="input" />
     <div class="subtitle">Билд машина</div>
-    <input type="text" placeholder="Введите логин" class="input" />
-    <input type="text" placeholder="Введите пароль" class="input" />
-    <input type="text" placeholder="Введите" class="input" />
+    <ui-input :name="'Логин'" type="text" :placeholder="'Введите логин'" class="input" />
+    <ui-input :name="'Пароль'" type="text" :placeholder="'Введите пароль'" class="input" />
+    <ui-input :name="'URL'" type="text" :placeholder="'Введите'" class="input" />
     <div class="buttons">
       <cancel-button class="cancel" @click.native="$emit('hide-dialog')"
         >Отмена</cancel-button
@@ -21,11 +21,12 @@
 <script lang="ts">
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
-import cancelButton from "@/components/ui/cancel-button.vue";
-import addButton from "@/components/ui/add-button.vue";
+import CancelButton from "@/components/ui/buttons/cancel-button.vue";
+import AddButton from "@/components/ui/buttons/add-button.vue";
+import UiInput from "@/components/ui/ui-input.vue";
 
 @Component({
-  components: { cancelButton, addButton },
+  components: { CancelButton, AddButton, UiInput },
   name: "settings-form",
 })
 export default class SettingsForm extends Vue {}
@@ -44,13 +45,7 @@ export default class SettingsForm extends Vue {}
   margin-top: 30px;
 }
 .input {
-  margin-top: 35px;
-  color: #fff;
-  width: 100%;
-  padding: 15px 30px;
-  border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
-  border: none;
+  margin-top: 20px;
 }
 .buttons {
   display: flex;

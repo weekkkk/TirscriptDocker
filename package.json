@@ -7,8 +7,8 @@
         "dev": "vue-cli-service serve",
         "build": "vue-cli-service build",
         "set-registry": "npm set registry http://194.28.112.20:4873/",
-        "install-dataSourceBuilder": "npm i git+http://gitlab.tirscript.com:8888/project-manager/plugins/data-source-builder.git -g",
-        "build-data-source": "build-data-source {{type}} {{url}} src/api"
+        "install-dataSourceBuilder": "npm i git+http://gitlab.tirscript.com:8888/project-manager/plugins/data-source-builder.git",
+        "build-data-source": "build-data-source ws ws://192.168.1.5:6203/websocket src/api"
     },
     "repository": {
         "type": "git",
@@ -19,6 +19,7 @@
         "@types/lodash.debounce": "^4.0.6",
         "apexcharts": "^3.24.0",
         "axios": "^0.21.1",
+        "data-source-builder": "git+http://gitlab.tirscript.com:8888/project-manager/plugins/data-source-builder.git",
         "js-cookie": "^2.2.1",
         "moment-timezone": "^0.5.33",
         "perfect-scrollbar": "^1.5.0",

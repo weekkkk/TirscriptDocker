@@ -1,13 +1,14 @@
 <template>
   <div class="form">
     <div class="title">Добавление сервера</div>
-    <input
+    <ui-input
+      :name="'Название'"
       type="text"
       placeholder="Название сервера"
       class="input"
       v-model="container.name"
     />
-    <input type="text" placeholder="Url" class="input" />
+    <ui-input :name="'URL'" type="text" placeholder="Url" class="input" />
     <div class="buttons">
       <cancel-button 
         class="cancel" 
@@ -29,11 +30,12 @@
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
 import ServerType from "@/components/server-box/models/server-type";
-import cancelButton from "@/components/ui/cancel-button.vue";
-import addButton from "@/components/ui/add-button.vue";
+import CancelButton from "@/components/ui/buttons/cancel-button.vue";
+import AddButton from "@/components/ui/buttons/add-button.vue";
+import UiInput from "@/components/ui/ui-input.vue";
 
 @Component({
-  components: { cancelButton, addButton },
+  components: { CancelButton, AddButton, UiInput },
   name: "add-image-from",
 })
 export default class AddImageForm extends Vue {
@@ -56,13 +58,7 @@ export default class AddImageForm extends Vue {
   z-index: 1;
 }
 .input {
-  color: #fff;
-  width: 100%;
-  padding: 15px 30px;
-  border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
-  border: none;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 .buttons {
   display: flex;

@@ -1,8 +1,6 @@
 <template>
-  <layout
-    :pageName="pageName"
-    @show-dialog-add-server="dialogAddServerForm.showDialog()"
-  >
+  <layout :pageName="pageName">
+    <selvers-header-right @show-dialog-add-server-form="dialogAddServerForm.showDialog()" slot="header-right" />
     <div class="main-box">
       <server-box
         v-for="server in serverBox.servers"
@@ -63,7 +61,9 @@ export default class ServersComponent extends Vue {
   }
   //Работает также, как в 'landing'
   hideDialogs() {
-    this.dialogAddServerForm.show ? this.dialogAddServerForm.hideDialog() : this.dialogAddContainerForm.hideDialog()
+    this.dialogAddServerForm.show
+      ? this.dialogAddServerForm.hideDialog()
+      : this.dialogAddContainerForm.hideDialog();
   }
 
   //Вызывается при нажатии на кнопку сохранения в диалоговом окне добавления образа, принимает добавляемый контейнер

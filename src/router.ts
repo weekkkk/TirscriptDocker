@@ -6,7 +6,7 @@ Vue.use(VueRouter);
 
 const BaseLayout = () => import("@layouts/base-layout.vue");
 const LandingPage = () => import("@pages/landing/landing.vue");
-const ServersPage = () => import("@pages/servers.vue");
+const ServersPage = () => import("@/components/pages/servers/servers.vue");
 const ErrorPage = () => import('@pages/error404/error404.vue')
 
 const router = new VueRouter({

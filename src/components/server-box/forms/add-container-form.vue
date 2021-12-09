@@ -1,19 +1,21 @@
 <template>
   <div class="form">
     <div class="title">Добавление контейнера</div>
-    <my-select @add-container="addContainer" />
+    <my-select
+      :placeholder="'Введите'"
+      :options="possibleСontainers"
+      v-model="addedContainer.name"
+      @added-container-id="addedContainerId"
+    />
     <div class="buttons">
-      <cancel-button 
-        class="cancel" 
-        @click.native="$emit('hide-dialog')"
-      >
-      Отмена
+      <cancel-button class="cancel" @click.native="$emit('hide-dialog')">
+        Отмена
       </cancel-button>
       <add-button
         class="save"
-        @click.native="$emit('add-container', addedContainer)"
+        @click.native="addedContainer.id == 0 ? isError = true : $emit('add-container', addedContainer)"
       >
-      Сохранить
+        Сохранить
       </add-button>
     </div>
   </div>
@@ -23,8 +25,8 @@
 import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
 import ImageType from "@/components/table/models/image-type";
-import cancelButton from "@/components/ui/cancel-button.vue";
-import addButton from "@/components/ui/add-button.vue";
+import cancelButton from "@/components/ui/buttons/cancel-button.vue";
+import addButton from "@/components/ui/buttons/add-button.vue";
 import MySelect from "@/components/ui/my-select/my-select.vue";
 
 @Component({
@@ -32,9 +34,19 @@ import MySelect from "@/components/ui/my-select/my-select.vue";
   name: "add-image-from",
 })
 export default class AddImageForm extends Vue {
-  addedContainer: ImageType;
-  addContainer(addedContainer: ImageType) {
-    this.addedContainer = addedContainer;
+  isError = false;
+  addedContainer: ImageType = {
+    id: 0,
+    name: "",
+    content: [],
+    addRepositoryFormVisible: false,
+  };
+  addedContainerId(id: number) {
+    this.addedContainer = this.possibleСontainers.filter((c) => c.id == id)[0];
+  }
+  possibleСontainers: ImageType[];
+  created() {
+    this.possibleСontainers = this.$mainStore.serverBox.possibleСontainers;
   }
 }
 </script>

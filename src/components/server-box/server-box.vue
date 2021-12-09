@@ -3,15 +3,11 @@
     <div class="server-header">
       <div class="server-name">{{ server.name }}</div>
       <div class="header-icons">
-        <div class="icon">
-          <img src="@/assets/icons/ui-components/info.svg" />
-        </div>
-        <div
+        <info-btn />
+        <add-image-btn
           class="icon"
-          @click="$emit('show-dialog-add-container', server.id)"
-        >
-          <img src="@/assets/icons/ui-components/create.svg" />
-        </div>
+          @click.native="$emit('show-dialog-add-container', server.id)"
+        />
       </div>
     </div>
     <div class="add-image-message" v-if="server.containers.length == 0">
@@ -44,7 +40,10 @@ export default class ServerBox extends Vue {
 
   //Принимает id контейнера, который нужно удалить и передает через событие объект внутри которого находится id удаляемого контейнера и id сервера, из которого удаляется контейнер
   removeContainer(containerId: number) {
-    this.$emit("remove-container", { containerId: containerId, serverId: this.server.id });
+    this.$emit("remove-container", {
+      containerId: containerId,
+      serverId: this.server.id,
+    });
   }
 }
 </script>
@@ -76,15 +75,12 @@ export default class ServerBox extends Vue {
       display: flex;
       .icon {
         margin-left: 6px;
-        cursor: pointer;
-        &:hover {
-          filter: brightness(115%);
-        }
-        &:active {
-          filter: brightness(130%);
-        }
-        img {
-          height: 28px;
+        height: 28px;
+        width: 28px;
+        border-radius: 5px;
+        .add-image {
+          height: 8px;
+          width: 8px;
         }
       }
     }

@@ -1,4 +1,5 @@
 ﻿import Vue from "vue"
+import Api from './api/dataSource/api/apiDataSource.plugin'
 
 import './register-router-hooks'
 import './register-components'
@@ -14,6 +15,9 @@ Vue.use(mainStore);
 
 import Vue2TouchEvents from 'vue2-touch-events'
 Vue.use(Vue2TouchEvents)
+Vue.use(Api, 'ws://192.168.1.5:6203/websocket')
+
+
 
 const moment = require('moment')
 moment.locale('ru');

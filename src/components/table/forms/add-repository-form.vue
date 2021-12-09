@@ -10,12 +10,8 @@
       <my-button class="download-button">Загрузка архива</my-button>
     </div>
     <div class="icons">
-      <div class="icon" @click="$emit('hide-form')">
-        <img src="@/assets/icons/ui-components/cancel-mark.svg" />
-      </div>
-      <div class="icon" @click="$emit('add-repository', repository)">
-        <img src="@/assets/icons/ui-components/add-mark.svg" />
-      </div>
+      <cancel-mark-btn class="icon" @click.native="$emit('hide-form')" />
+      <add-mark-btn class="icon" @click.native="$emit('add-repository', repository)" />
     </div>
   </div>
 </template>
@@ -24,11 +20,11 @@
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
 import RepositoryType from "@/components/table/models/repository-type";
-import cancelButton from "@/components/ui/cancel-button.vue";
-import myButton from "@/components/ui/my-button.vue";
+import MyButton from "@/components/ui/buttons/my-button.vue";
+import UiInput from "@/components/ui/ui-input.vue";
 
 @Component({
-  components: { cancelButton, myButton },
+  components: { MyButton, UiInput },
   name: "add-image-form",
 })
 export default class AddRepositoryForm extends Vue {
@@ -58,7 +54,7 @@ export default class AddRepositoryForm extends Vue {
     width: 396px;
     min-width: 10px;
     color: #fff;
-    padding: 10px 30px;
+    padding: 10px 20px;
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0);
     border: 2px solid rgba(88, 110, 185, 0.4);
@@ -72,13 +68,6 @@ export default class AddRepositoryForm extends Vue {
     align-items: center;
     .icon {
       margin-left: 6px;
-      cursor: pointer;
-      &:hover {
-        filter: brightness(115%);
-      }
-      &:active {
-        filter: brightness(130%);
-      }
     }
   }
   @media (max-width: 830px) {

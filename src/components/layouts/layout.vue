@@ -2,12 +2,13 @@
   <div class="layout">
     <div class="container">
       <layout-header 
-      @add-image="$emit('add-image')"
       @show-dialog-add-server="$emit('show-dialog-add-server')" 
       :pageName="pageName"
-      />
+      >
+        <slot name="header-right"></slot>
+      </layout-header>
       <div class="content">
-        <slot />
+        <slot></slot>
       </div>
       <layout-footer></layout-footer>
     </div>
@@ -33,17 +34,22 @@ export default class LayoutComponent extends Vue {
 <style lang="less">
 @font-face {
   font-family: "Gilroy";
+  src: url("./fonts/Gilroy-Bold.ttf") format('truetype');
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Gilroy";
   src: url("./fonts/Gilroy-Semibold.ttf") format('truetype');
   font-weight: 600;
 }
 @font-face {
   font-family: "Gilroy";
-  src: url("./fonts/Gilroy-Medium.ttf");
+  src: url("./fonts/Gilroy-Medium.ttf") format('truetype');
   font-weight: 500;
 }
 @font-face {
   font-family: "Gilroy";
-  src: url("./fonts/Gilroy-Regular.ttf");
+  src: url("./fonts/Gilroy-Regular.ttf") format('truetype');
   font-weight: 400;
 }
 body {
