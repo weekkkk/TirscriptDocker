@@ -34,22 +34,22 @@ export default class LayoutComponent extends Vue {
 <style lang="less">
 @font-face {
   font-family: "Gilroy";
-  src: url("./fonts/Gilroy-Bold.ttf") format('truetype');
+  src: url("~@assets/fonts/Gilroy-Bold.ttf") format('truetype');
   font-weight: 700;
 }
 @font-face {
   font-family: "Gilroy";
-  src: url("./fonts/Gilroy-Semibold.ttf") format('truetype');
+  src: url("~@assets/fonts/Gilroy-Semibold.ttf") format('truetype');
   font-weight: 600;
 }
 @font-face {
   font-family: "Gilroy";
-  src: url("./fonts/Gilroy-Medium.ttf") format('truetype');
+  src: url("~@assets/fonts/Gilroy-Medium.ttf") format('truetype');
   font-weight: 500;
 }
 @font-face {
   font-family: "Gilroy";
-  src: url("./fonts/Gilroy-Regular.ttf") format('truetype');
+  src: url("~@assets/fonts/Gilroy-Regular.ttf") format('truetype');
   font-weight: 400;
 }
 body {

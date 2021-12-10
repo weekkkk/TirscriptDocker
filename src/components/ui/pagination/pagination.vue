@@ -14,13 +14,9 @@
       <div
         class="page"
         v-if="
-          (page == currentPage + 2 && countPages != currentPage + 2) ||
-          (currentPage + 1 == countPages &&
-            page == currentPage - 1 &&
-            countPages > 3) ||
-          (currentPage == countPages &&
-            page == currentPage - 2 &&
-            countPages > 3)
+          page == currentPage + 2 && countPages != currentPage + 2 ||
+          currentPage + 1 == countPages && page == currentPage - 1 && countPages > 3 || 
+          currentPage == countPages && page == currentPage - 2 && countPages > 3
         "
       >
         ...
@@ -32,9 +28,9 @@
           page == currentPage ||
           page == currentPage + 1 ||
           page == countPages ||
-          (page == countPages - 1 && currentPage == countPages) ||
-          (currentPage == countPages && page == 1) ||
-          (currentPage + 1 == countPages && page == 1)
+          page == countPages - 1 && currentPage == countPages ||
+          currentPage == countPages && page == 1 ||
+          currentPage + 1 == countPages && page == 1
         "
       >
         {{ page }}
@@ -61,6 +57,9 @@ export default class Pagination extends Vue {
   showPage(page: number) {
     page > 0 && page <= this.countPages ? this.$emit("show-page", page) : {}; //Проверяет, находится ли номер страницы на которую хочет перейти пользователь в допустимых пределах
   }
+  created() {
+
+  }
 }
 </script>
 
@@ -69,7 +68,6 @@ export default class Pagination extends Vue {
   display: inline-flex;
   align-items: center;
   .arrow {
-    background-color: grey;
     width: 20px;
     height: 20px;
     cursor: pointer;

@@ -52,6 +52,13 @@ export default class ServersComponent extends Vue {
   addServer(server) {
     this.serverBox.addServer(server);
     this.dialogAddServerForm.hideDialog();
+    this.$api.ProjectConfigure.addServerAsync({Name: server.name, RegistryId: 10015, Ip: 'ip'})
+    .then((res) => {
+      // console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
   }
 
   //Вызывается по клику на кнопку добавления контейнера в сервер, принимает id сервера и записывает его в переменную, затем открывает диалоговое окно
@@ -77,7 +84,22 @@ export default class ServersComponent extends Vue {
   }
 
   created() {
-    this.serverBox = this.$mainStore.serverBox;
+    // this.serverBox = this.$mainStore.serverBox;
+    this.$api.ProjectConfigure.getRegistryAsync({MainProjectId: 5051})
+    .then((res) => {
+      // console.log(res);
+      this.$api.ProjectConfigure.getServersAsync({RegistryId: res.Id, Page: {}})
+      .then((res)=> {
+        // console.log(res);
+        res.Items.forEach((server) => this.serverBox.servers.push({id: server.Id, name: server.Name, containers: []}))
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+    })
   }
 }
 </script>

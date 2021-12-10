@@ -35,18 +35,30 @@ import MySelect from "@/components/ui/my-select/my-select.vue";
 })
 export default class AddImageForm extends Vue {
   isError = false;
-  addedContainer: ImageType = {
-    id: 0,
-    name: "",
-    content: [],
-    addRepositoryFormVisible: false,
-  };
+  addedContainer: ImageType = {id: 0, name: '', serviceId: 0};
+  possibleСontainers: ImageType[] = [];
   addedContainerId(id: number) {
     this.addedContainer = this.possibleСontainers.filter((c) => c.id == id)[0];
   }
-  possibleСontainers: ImageType[];
-  created() {
-    this.possibleСontainers = this.$mainStore.serverBox.possibleСontainers;
+  mounted() {
+    // this.possibleСontainers = this.$mainStore.serverBox.possibleСontainers;
+    this.$api.ServiceConfigure.getServicesAsync({ IdMainProject: 5051, Page: {},})
+    .then((res) => {
+      console.log(res);
+      res.Items.forEach((service) => 
+        this.$api.ServiceConfigure.getImagesInfoAsync({ ServiceId: service.Id, Page: {} })
+        .then((res) => {
+          console.log(res);
+          res.Items.forEach((image) => this.possibleСontainers.push({id: image.Id, name: image.Name, serviceId: service.Id}));
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+      );
+    })
+    .catch((err) => {
+      console.log(err);
+    })
   }
 }
 </script>

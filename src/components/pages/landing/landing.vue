@@ -32,7 +32,7 @@
         :countPages="countPages"
         :currentPage="pagination.currentPage"
         @show-page="showPage"
-        v-if="countPages > 0"
+        v-if="countPages > 1"
       />
     </div>
   </layout>
@@ -64,7 +64,7 @@ import LandingHeaderRight from "@/components/pages/landing/landing-header-right.
 export default class LandingComponent extends Vue {
   pageName = "Название проекта";
   table = new TableBL([]);
-  pagination = new PaginationBl(1, 1); //Модель для пагинации, в которую передаются кол-во образов на одной странице и текущая страница
+  pagination = new PaginationBl(5, 1); //Модель для пагинации, в которую передаются кол-во образов на одной странице и текущая страница
   get shortTable() {
     return this.pagination.shortTable(this.table.rows); //Возвращает посты, которые находятся на текущей странице
   }
@@ -83,6 +83,14 @@ export default class LandingComponent extends Vue {
   addImage(row: ImageType) {
     this.table.addRow(row);
     this.dialogAddImageForm.hideDialog();
+    
+    this.$api.ServiceConfigure.addImageInfoAsync({ServiceId: Object.assign({}, row).serviceId, Name: Object.assign({}, row).name, DockerArg: {}, Version: '123456789'})
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
   }
 
   //Принимает объект, внутри которого id удаляемого репозитория и id строки, из которой нужно удалить репозиторий
@@ -117,18 +125,35 @@ export default class LandingComponent extends Vue {
   }
 
   created() {
-    this.table = this.$mainStore.table;
-    this.$api.ServiceConfigure.getImageInfoAsync({ ImageId: 20089 })
+    this.$api.ProjectConfigure.getProjectAsync({ MainProjectId: 5051 })
+    .then((res) => {
+      this.pageName = res.Name;
+      this.$api.ServiceConfigure.getServicesAsync({ IdMainProject: 5051, Page: {},})
       .then((res) => {
-        console.log(res);
+        // console.log(res);
+        res.Items.forEach((service) => 
+          this.$api.ServiceConfigure.getImagesInfoAsync({ ServiceId: service.Id, Page: {} })
+          .then((res) => {
+            // console.log(res);
+            res.Items.forEach((image) => this.table.rows.push({id: image.Id, name: image.Name, serviceId: service.Id}));
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+        );
       })
       .catch((err) => {
         console.log(err);
+      })
+    })
+    .catch((err) => {
+      this.$api.ProjectConfigure.createProjectAsync({
+        IdMainProject: 5051,
+        Name: "Docker-Test",
+        Description: "",
+        Domain: ""
       });
-  }
-  beforeRouteUpdate() {
-    this.$mainStore.table = this.table;
-    console.log(this.$mainStore.table);
+    });
   }
 }
 </script>

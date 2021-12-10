@@ -23,7 +23,7 @@ import UiInput from "@/components/ui/ui-input.vue"
   name: "add-image-form",
 })
 export default class AddImageForm extends Vue {
-  image: ImageType = {id: 0, name: "", content: [{id: 1, version: "123456789", status: false}], addRepositoryFormVisible: false};
+  image: ImageType = {id: 0, name: "", serviceId: 10025, content: [{id: 1, version: "123456789", status: false}], addRepositoryFormVisible: false};
   isError = false;
   get getIsError() {
     return this.isError ? this.isError = this.image.name=='' : this.isError;

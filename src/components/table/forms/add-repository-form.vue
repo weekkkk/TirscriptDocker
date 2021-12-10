@@ -6,12 +6,13 @@
         placeholder="Введите версию"
         class="input"
         v-model="repository.version"
+        :class="{'error-input': isError}"
       />
       <my-button class="download-button">Загрузка архива</my-button>
     </div>
     <div class="icons">
       <cancel-mark-btn class="icon" @click.native="$emit('hide-form')" />
-      <add-mark-btn class="icon" @click.native="$emit('add-repository', repository)" />
+      <add-mark-btn class="icon" @click.native="repository.version ? $emit('add-repository', repository) : isError = true" />
     </div>
   </div>
 </template>
@@ -28,6 +29,7 @@ import UiInput from "@/components/ui/ui-input.vue";
   name: "add-image-form",
 })
 export default class AddRepositoryForm extends Vue {
+  isError = false;
   repository: RepositoryType = { id: 0, version: "", status: false };
 }
 </script>
@@ -57,7 +59,10 @@ export default class AddRepositoryForm extends Vue {
     padding: 10px 20px;
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0);
-    border: 2px solid rgba(88, 110, 185, 0.4);
+    border: 2px solid #586eb966;
+  }
+  .error-input {
+    border-color: #ff4c5d66;
   }
   .download-button {
     padding: 11px 33px;

@@ -1,7 +1,7 @@
 import ImageType from "@/components/table/models/image-type";
 import RepositoryType from "./repository-type";
 
-export default class ImageTableBl{
+export default class ImageTableBl {
   rows: ImageType[] = [];
   constructor(rows: ImageType[]) {
     this.rows = rows;
@@ -15,6 +15,7 @@ export default class ImageTableBl{
   addRow(row: ImageType) {
     row.id = Date.now();
     this.rows.push(row);
+    
   }
   addRepository(imageId: number, repository: RepositoryType) {
     repository.id = Date.now();
