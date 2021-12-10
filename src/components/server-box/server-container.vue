@@ -25,14 +25,14 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { Component, Prop } from "vue-property-decorator";
-import ServerContainerContent from "@/components/server-box/server-container-content.vue";
-import ImageType from "@/components/table/models/image-type";
+import Vue from 'vue';
+import { Component, Prop } from 'vue-property-decorator';
+import ServerContainerContent from '@/components/server-box/server-container-content.vue';
+import ImageType from '@/components/table/models/image-type';
 
 @Component({
   components: { ServerContainerContent },
-  name: "server-container",
+  name: 'server-container',
 })
 export default class ServerContainer extends Vue {
   @Prop(Object) readonly container: ImageType;

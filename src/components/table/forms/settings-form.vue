@@ -19,15 +19,15 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { Component } from "vue-property-decorator";
-import CancelButton from "@/components/ui/buttons/cancel-button.vue";
-import AddButton from "@/components/ui/buttons/add-button.vue";
-import UiInput from "@/components/ui/ui-input.vue";
+import Vue from 'vue';
+import { Component } from 'vue-property-decorator';
+import CancelButton from '@/components/ui/buttons/cancel-button.vue';
+import AddButton from '@/components/ui/buttons/add-button.vue';
+import UiInput from '@/components/ui/ui-input.vue';
 
 @Component({
   components: { CancelButton, AddButton, UiInput },
-  name: "settings-form",
+  name: 'settings-form',
 })
 export default class SettingsForm extends Vue {}
 </script>

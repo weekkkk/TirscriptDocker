@@ -31,19 +31,19 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { Component, Prop } from "vue-property-decorator";
-import RepositoryType from "@/components/table/models/repository-type";
+import Vue from 'vue';
+import { Component, Prop } from 'vue-property-decorator';
+import RepositoryType from '@/components/table/models/repository-type';
 
 @Component({
-  name: "repository-row",
+  name: 'repository-row',
 })
 export default class RepositoryRow extends Vue {
   @Prop(Object) readonly repository: RepositoryType;
   @Prop(Boolean) readonly addRepositoryFormVisible: boolean;
 
   addRepository(repository: RepositoryType) {
-    this.$emit("add-repository", repository);
+    this.$emit('add-repository', repository);
   }
 }
 </script>

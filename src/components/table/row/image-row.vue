@@ -27,15 +27,15 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { Component, Prop } from "vue-property-decorator";
-import RepositoryType from "@/components/table/models/repository-type";
-import ImageType from "@/components/table/models/image-type";
-import RepositoryTable from "@/components/table/row/row-content/repository-table.vue";
+import Vue from 'vue';
+import { Component, Prop } from 'vue-property-decorator';
+import RepositoryType from '@/components/table/models/repository-type';
+import ImageType from '@/components/table/models/image-type';
+import RepositoryTable from '@/components/table/row/row-content/repository-table.vue';
 
 @Component({
   components: { RepositoryTable },
-  name: "image-row",
+  name: 'image-row',
 })
 export default class ImageRow extends Vue {
   @Prop(Object) readonly image: ImageType;
@@ -43,11 +43,11 @@ export default class ImageRow extends Vue {
 
   //Принимает id удаляемого репозитория и создает событие, которое передает объект, внутри которого id удаляемого репозитория и id строки, из которой нужно удалить репозиторий
   removeRepository(repositoryId: number) {
-    this.$emit("remove-repository", { repositoryId: repositoryId, imageId: this.image.id });
+    this.$emit('remove-repository', { repositoryId: repositoryId, imageId: this.image.id });
   }
   //Принимает репозитории и создает событие, которое передает объект, внутри которого репозиторий и id строки, в которую нужно добавить репозиторий
   addRepository(repository: RepositoryType) {
-    this.$emit("add-repository", { repository: repository, imageId: this.image.id });
+    this.$emit('add-repository', { repository: repository, imageId: this.image.id });
   }
 }
 </script>

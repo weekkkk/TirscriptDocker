@@ -9,14 +9,14 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { Component, Prop } from "vue-property-decorator";
-import MyButton from "@/components/ui/buttons/my-button.vue";
-import UiBackBtn from "@/components/ui/buttons/ui-back-btn.vue"
+import Vue from 'vue';
+import { Component, Prop } from 'vue-property-decorator';
+import MyButton from '@/components/ui/buttons/my-button.vue';
+import UiBackBtn from '@/components/ui/buttons/ui-back-btn.vue'
 
 @Component({
   components: { MyButton, UiBackBtn },
-  name: "layout-header",
+  name: 'layout-header',
 })
 
 export default class LayoutHeaderComponent extends Vue {

@@ -22,16 +22,16 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { Component, Prop } from "vue-property-decorator";
-import ImageType from "@/components/table/models/image-type";
-import cancelButton from "@/components/ui/buttons/cancel-button.vue";
-import addButton from "@/components/ui/buttons/add-button.vue";
-import MySelect from "@/components/ui/my-select/my-select.vue";
+import Vue from 'vue';
+import { Component, Prop } from 'vue-property-decorator';
+import ImageType from '@/components/table/models/image-type';
+import CancelButton from '@/components/ui/buttons/cancel-button.vue';
+import AddButton from '@/components/ui/buttons/add-button.vue';
+import MySelect from '@/components/ui/my-select/my-select.vue';
 
 @Component({
-  components: { cancelButton, addButton, MySelect },
-  name: "add-image-from",
+  components: { CancelButton, AddButton, MySelect },
+  name: 'add-image-from',
 })
 export default class AddImageForm extends Vue {
   isError = false;

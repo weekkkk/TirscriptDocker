@@ -11,14 +11,15 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { Component } from "vue-property-decorator";
+import Vue from 'vue';
+import { Component } from 'vue-property-decorator';
+import AddButton from '@/components/ui/buttons/add-button.vue';
 
 @Component({
-  components: {},
-  name: "landing-header-right",
+  components: { AddButton },
+  name: 'servers-header-right',
 })
-export default class LandingHeaderRight extends Vue {}
+export default class ServersHeaderRight extends Vue {}
 </script>
 
 <style lang="less" scoped>

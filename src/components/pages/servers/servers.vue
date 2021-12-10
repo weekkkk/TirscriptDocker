@@ -1,6 +1,6 @@
 <template>
   <layout :pageName="pageName">
-    <selvers-header-right @show-dialog-add-server-form="dialogAddServerForm.showDialog()" slot="header-right" />
+    <servers-header-right @show-dialog-add-server-form="dialogAddServerForm.showDialog()" slot="header-right" />
     <div class="main-box">
       <server-box
         v-for="server in serverBox.servers"
@@ -9,7 +9,7 @@
         @show-dialog-add-container="showAddContainerForm"
         @remove-container="removeContainer"
       />
-      <my-dialog
+      <ui-dialog
         :showOne="dialogAddServerForm.show"
         :showTwo="dialogAddContainerForm.show"
         @hide-dialog="hideDialogs()"
@@ -24,27 +24,29 @@
           @add-container="addContainer"
           v-if="dialogAddContainerForm.show"
         />
-      </my-dialog>
+      </ui-dialog>
     </div>
   </layout>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { Component } from "vue-property-decorator";
-import DialogBL from "@/components/ui/ui-dialog/dialog-bl";
-import ServerBoxBL from "@/components/server-box/models/server-box-bl";
-import ServerBox from "@/components/server-box/server-box.vue";
-import MyDialog from "@/components/ui/ui-dialog/my-dialog.vue";
-import AddServerForm from "@/components/server-box/forms/add-server-form.vue";
+import Vue from 'vue';
+import { Component } from 'vue-property-decorator';
+import DialogBL from '@/components/ui/ui-dialog/dialog-bl';
+import ServerBoxBL from '@/components/server-box/models/server-box-bl';
+import ServerHeaderRight from '@/components/pages/servers/servers-header-right.vue';
+import ServerBox from '@/components/server-box/server-box.vue';
+import UiDialog from '@/components/ui/ui-dialog/ui-dialog.vue';
+import AddServerForm from '@/components/server-box/forms/add-server-form.vue';
+import AddContainerForm from '@/components/server-box/forms/add-container-form.vue';
 
 @Component({
-  components: { ServerBox, MyDialog, AddServerForm },
-  name: "servers",
+  components: { ServerHeaderRight, ServerBox, UiDialog, AddServerForm, AddContainerForm },
+  name: 'servers',
 })
 export default class ServersComponent extends Vue {
   serverBox = new ServerBoxBL([], []);
-  pageName = "Страница серверов";
+  pageName = 'Страница серверов';
   dialogAddServerForm = new DialogBL(false); //Модель диалогового окна для добавления серверов
   dialogAddContainerForm = new DialogBL(false); //Модель диалогового окна для добавления контейнеров в сервера
   addContainerServerId: number;

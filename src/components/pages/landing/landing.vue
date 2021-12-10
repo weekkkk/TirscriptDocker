@@ -44,7 +44,7 @@ import { Component } from "vue-property-decorator";
 import TableBL from "@/components/table/models/image-table-bl";
 import DialogBL from "@/components/ui/ui-dialog/dialog-bl";
 import ImageTable from "@/components/table/image-table.vue";
-import myDialog from "@/components/ui/ui-dialog/my-dialog.vue";
+import myDialog from "@/components/ui/ui-dialog/ui-dialog.vue";
 import addImageForm from "@/components/table/forms/add-image-form.vue";
 import ImageType from "@/components/table/models/image-type";
 import Pagination from "@/components/ui/pagination/pagination.vue";

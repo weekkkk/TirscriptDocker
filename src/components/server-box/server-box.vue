@@ -26,21 +26,21 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { Component, Prop } from "vue-property-decorator";
-import ServerType from "@/components/server-box/models/server-type";
-import ServerContainer from "@/components/server-box/server-container.vue";
+import Vue from 'vue';
+import { Component, Prop } from 'vue-property-decorator';
+import ServerType from '@/components/server-box/models/server-type';
+import ServerContainer from '@/components/server-box/server-container.vue';
 
 @Component({
   components: { ServerContainer },
-  name: "server-box",
+  name: 'server-box',
 })
 export default class ServerBox extends Vue {
   @Prop(Object) readonly server: ServerType;
 
   //Принимает id контейнера, который нужно удалить и передает через событие объект внутри которого находится id удаляемого контейнера и id сервера, из которого удаляется контейнер
   removeContainer(containerId: number) {
-    this.$emit("remove-container", {
+    this.$emit('remove-container', {
       containerId: containerId,
       serverId: this.server.id,
     });

@@ -26,12 +26,12 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { Component, Prop } from "vue-property-decorator";
+import Vue from 'vue';
+import { Component, Prop } from 'vue-property-decorator';
 
 @Component({
   components: {},
-  name: "server-container-content",
+  name: 'server-container-content',
 })
 export default class ServerContainerContent extends Vue {
   @Prop(Boolean) readonly contentVisible: boolean;

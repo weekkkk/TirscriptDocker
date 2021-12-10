@@ -16,24 +16,24 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { Component, Prop } from "vue-property-decorator";
-import RepositoryType from "@/components/table/models/repository-type";
-import Repository from "@/components/table/row/row-content/repository-row.vue";
+import Vue from 'vue';
+import { Component, Prop } from 'vue-property-decorator';
+import RepositoryType from '@/components/table/models/repository-type';
+import Repository from '@/components/table/row/row-content/repository-row.vue';
 
 @Component({
   components: { Repository },
-  name: "repository-table",
+  name: 'repository-table',
 })
 export default class RepositoryTable extends Vue {
   @Prop(Boolean) readonly showRepositoryTable: boolean;
   @Prop(Array) readonly repositoryTable: RepositoryType[];
   @Prop(Boolean) readonly addRepositoryFormVisible: boolean;
   removeRepository(repositoryId: number) {
-    this.$emit("remove-repository", repositoryId);
+    this.$emit('remove-repository', repositoryId);
   }
   addRepository(repository: RepositoryType) {
-    this.$emit("add-repository", Object.assign({}, repository));
+    this.$emit('add-repository', Object.assign({}, repository));
   }
 }
 </script>

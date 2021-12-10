@@ -18,19 +18,19 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { Component } from "vue-property-decorator";
-import RepositoryType from "@/components/table/models/repository-type";
-import MyButton from "@/components/ui/buttons/my-button.vue";
-import UiInput from "@/components/ui/ui-input.vue";
+import Vue from 'vue';
+import { Component } from 'vue-property-decorator';
+import RepositoryType from '@/components/table/models/repository-type';
+import MyButton from '@/components/ui/buttons/my-button.vue';
+import UiInput from '@/components/ui/ui-input.vue';
 
 @Component({
   components: { MyButton, UiInput },
-  name: "add-image-form",
+  name: 'add-image-form',
 })
 export default class AddRepositoryForm extends Vue {
   isError = false;
-  repository: RepositoryType = { id: 0, version: "", status: false };
+  repository: RepositoryType = { id: 0, version: '', status: false };
 }
 </script>
 

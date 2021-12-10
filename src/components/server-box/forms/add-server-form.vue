@@ -27,24 +27,24 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { Component } from "vue-property-decorator";
-import ServerType from "@/components/server-box/models/server-type";
-import CancelButton from "@/components/ui/buttons/cancel-button.vue";
-import AddButton from "@/components/ui/buttons/add-button.vue";
-import UiInput from "@/components/ui/ui-input.vue";
+import Vue from 'vue';
+import { Component } from 'vue-property-decorator';
+import ServerType from '@/components/server-box/models/server-type';
+import CancelButton from '@/components/ui/buttons/cancel-button.vue';
+import AddButton from '@/components/ui/buttons/add-button.vue';
+import UiInput from '@/components/ui/ui-input.vue';
 
 @Component({
   components: { CancelButton, AddButton, UiInput },
-  name: "add-image-from",
+  name: 'add-image-from',
 })
 export default class AddImageForm extends Vue {
-  container: ServerType = { id: 0, name: "", containers: [] };
+  container: ServerType = { id: 0, name: '', containers: [] };
   constructor() {
     super();
   }
   created() {
-    console.log("landing");
+    console.log('landing');
   }
   mounted() {}
 }

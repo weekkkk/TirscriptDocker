@@ -13,12 +13,12 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { Component, Prop } from "vue-property-decorator";
+import Vue from 'vue';
+import { Component, Prop } from 'vue-property-decorator';
 
 @Component({
   components: {},
-  name: "loading-row-content-item",
+  name: 'loading-row-content-item',
 })
 export default class LoadingRowContentItem extends Vue {
   @Prop(String) readonly version: string;

@@ -11,19 +11,19 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { Component } from "vue-property-decorator";
-import ImageType from "@/components/table/models/image-type"
-import CancelButton from "@/components/ui/buttons/cancel-button.vue"
-import AddButton from "@/components/ui/buttons/add-button.vue"
-import UiInput from "@/components/ui/ui-input.vue"
+import Vue from 'vue';
+import { Component } from 'vue-property-decorator';
+import ImageType from '@/components/table/models/image-type'
+import CancelButton from '@/components/ui/buttons/cancel-button.vue'
+import AddButton from '@/components/ui/buttons/add-button.vue'
+import UiInput from '@/components/ui/ui-input.vue'
 
 @Component({
   components: { CancelButton, AddButton, UiInput },
-  name: "add-image-form",
+  name: 'add-image-form',
 })
 export default class AddImageForm extends Vue {
-  image: ImageType = {id: 0, name: "", serviceId: 10025, content: [{id: 1, version: "123456789", status: false}], addRepositoryFormVisible: false};
+  image: ImageType = {id: 0, name: '', serviceId: 10025, content: [{id: 1, version: '123456789', status: false}], addRepositoryFormVisible: false};
   isError = false;
   get getIsError() {
     return this.isError ? this.isError = this.image.name=='' : this.isError;

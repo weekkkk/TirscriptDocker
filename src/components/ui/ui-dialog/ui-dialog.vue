@@ -16,9 +16,9 @@ import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
 
 @Component({
-  name: "my-dialog",
+  name: "ui-dialog",
 })
-export default class DialogComponent extends Vue {
+export default class UiDialog extends Vue {
   @Prop(Boolean) readonly showOne: boolean
   @Prop(Boolean) readonly showTwo: boolean
   constructor() {
