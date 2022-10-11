@@ -1,4 +1,3 @@
-# Progressme Teacher Landing Front
+# Tirscript Docker
 
-Progressme Teacher Landing Front
-Проект для фронт-части для отображения лендинга учителя 
+Docker for Tirscript 
